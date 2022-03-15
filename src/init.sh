@@ -80,6 +80,15 @@ if [ ${MSE_TMP_ISOK} == 1 ]; then
       msePathToModule="${MSE_TMP_THIS_MODULE_DIRECTORY}/../${mseDependency}/src/init.sh"
       if [ -f "${msePathToModule}" ]; then
         . "${msePathToModule}"
+        MSE_TMP_THIS_MODULE_DIRECTORY=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
+      else
+        MSE_TMP_ISOK=0
+        printf "    Atenção:\n"
+        printf "    O módulo '${mseDependency}' não foi encontrado. \n"
+        printf "    Adicione este e outros módulos necessários usando o comando: \n"
+        printf "    - git submodule update --remote \n"
+        printf "\n"
+        printf "${msePathToModule}\n"
       fi
     done
 
