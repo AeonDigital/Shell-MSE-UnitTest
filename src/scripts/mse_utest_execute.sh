@@ -70,8 +70,8 @@ mse_utest_execute() {
           #
           # Identifica os arquivos de script (sh) do diretório principal
           # e os arquivos de teste correspondentes
-          local mseFiles=$(find "${mseTMPDIR}/scripts" -name "*.sh")
-          local mseTestFiles=$(find "$mseTMPDIR/tests" -name "*.sh")
+          local mseFiles=$(find "${mseTMPDIR}/scripts" -maxdepth 1 -name "*.sh")
+          local mseTestFiles=$(find "$mseTMPDIR/tests" -maxdepth 1 -name "*.sh")
 
 
           if [ "$mseFiles" == "" ]; then
