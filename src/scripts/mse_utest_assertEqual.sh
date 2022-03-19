@@ -16,13 +16,13 @@ mse_utest_assertEqual() {
 
   if [ "$testResult" == "$testExpected" ]; then
     ((testCountSuccess=testCountSuccess+1))
-    mse_utest_messageSet "${mseInnerCountTest} Ok" 1
+    mse_utest_messageSet "${mseInnerCountTest} ${lbl_assertResult_Ok}" 1
     mse_utest_messageShow
   else
     ((testCountFailed=testCountFailed+1))
-    mse_utest_messageSet "${mseInnerCountTest} FAIL" 1
-    mse_utest_messageSet "Result    : ${testResult}"
-    mse_utest_messageSet "Expected  : ${testExpected}"
+    mse_utest_messageSet "${mseInnerCountTest} ${lbl_assertResult_Fail}" 1
+    mse_utest_messageSet "${lbl_assertResult_Result} ${testResult}"
+    mse_utest_messageSet "${lbl_assertResult_Expect} ${testExpected}"
     mse_utest_messageShow
   fi
 }

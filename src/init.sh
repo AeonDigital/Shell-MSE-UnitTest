@@ -29,20 +29,12 @@ if [[ $(type -t "mse_mod_registerModule") != function ]]; then
 
   if [ ! -f "${MSE_TMP_PATH_TO_MAIN_MODULE_INIT_SCRIPT}" ]; then
     MSE_TMP_ISOK=0
-
-    printf "    Atenção:\n"
-    printf "    O módulo 'Shell-MSE-Main-Module' não foi encontrado ou não foi carregado. \n"
-    printf "    Use os seguintes comandos para adicioná-lo e configurá-lo:\n"
-    printf "    - git submodule add https://github.com/AeonDigital/Shell-MSE-Main-Module.git \n"
-    printf "    - git submodule set-branch --branch main -- ./Shell-MSE-Main-Module \n"
+    printf "\n"
+    printf "    Attention\n"
+    printf "    The module \"[[Shell-MSE-Main-Module]]\" was not loaded.\n"
+    printf "    Use the following commands to load it:\n"
     printf "    - git submodule update --remote \n"
     printf "\n"
-    printf "    Se o módulo \"Shell-MSE-Main-Module\" já faz parte do repositório atual você pode\n"
-    printf "    iniciá-lo usando os comandos a seguir:\n"
-    printf "    - git submodule init \n"
-    printf "    - git submodule update --remote \n"
-    printf "\n"
-    printf "    Operação abortada!\n\n"
   else
     #
     # Carrega o módulo principal.
@@ -55,6 +47,20 @@ fi
 
 
 if [ ${MSE_TMP_ISOK} == 1 ]; then
+  #
+  # Se o locale para as mensagens não está definido, usa o padrão 'en-us',
+  if [ -z ${MSE_GLOBAL_MODULE_LOCALE+x} ]; then
+    MSE_GLOBAL_MODULE_LOCALE="en-us"
+  fi
+  MSE_TMP_PATH_TO_LOCALE="${MSE_TMP_THIS_MODULE_DIRECTORY}/locale/${MSE_GLOBAL_MODULE_LOCALE}.sh"
+  if [ ! -f "${MSE_TMP_PATH_TO_LOCALE}" ]; then
+    MSE_TMP_PATH_TO_LOCALE="${MSE_TMP_THIS_MODULE_DIRECTORY}/locale/en-us.sh"
+  fi
+  source "${MSE_TMP_PATH_TO_LOCALE}"
+  unset MSE_TMP_PATH_TO_LOCALE
+
+
+
   #
   # Carrega as variáveis do módulo caso um arquivo 'variables.sh' esteja definido
   if [ -f "${MSE_TMP_THIS_MODULE_DIRECTORY}/config/variables.sh" ]; then
@@ -83,11 +89,7 @@ if [ ${MSE_TMP_ISOK} == 1 ]; then
         MSE_TMP_THIS_MODULE_DIRECTORY=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
       else
         MSE_TMP_ISOK=0
-        printf "    Atenção:\n"
-        printf "    O módulo '${mseDependency}' não foi encontrado. \n"
-        printf "    Adicione este e outros módulos necessários usando o comando: \n"
-        printf "    - git submodule update --remote \n"
-        printf "\n"
+        mse_mod_replacePlaceHolder "MODULE" "${mseDependency}" "${lbl_generic_ModuleNotFound}"
         printf "${msePathToModule}\n"
       fi
     done

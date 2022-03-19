@@ -24,7 +24,7 @@
 #   mse_utest_messageSet "Todos os arquivos serão excluídos."
 mse_utest_messageSet() {
   if [ $# != 1 ] && [ $# != 2 ]; then
-    mse_mod_errorAlert "${FUNCNAME[0]}" "expected 1 or 2 arguments"
+    mse_mod_errorAlert "${FUNCNAME[0]}" "${lbl_generic_lostArguments}"
   else
     if [ $# == 2 ] && [ $2 == 1 ]; then
       MSE_MD_UTEST_LOG_MESSAGES=()

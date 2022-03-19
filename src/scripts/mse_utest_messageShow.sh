@@ -15,7 +15,7 @@
 # onde, cada item do array será definido em uma linha do terminal
 mse_utest_messageShow() {
   if [ ${#MSE_MD_UTEST_LOG_MESSAGES[@]} == 0 ]; then
-    mse_mod_errorAlert "${FUNCNAME[0]}" "empty array MSE_MD_UTEST_LOG_MESSAGES"
+    mse_mod_errorAlert "${FUNCNAME[0]}" "${lbl_messageShow_emptyArray}"
   else
     local mseMsg
     for mseMsg in "${MSE_MD_UTEST_LOG_MESSAGES[@]}"; do

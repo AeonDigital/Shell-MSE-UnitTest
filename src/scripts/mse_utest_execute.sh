@@ -21,6 +21,8 @@ mse_utest_execute() {
   local testCountSuccess=0
   local testCountFailed=0
 
+  local mseMSG
+
 
 
   # Importante!!!
@@ -38,11 +40,7 @@ mse_utest_execute() {
   # Não havendo diretórios de scripts a serem testados...
   if [ ${#MSE_MD_UTEST_TARGET_DIRS[@]} == 0 ]; then
     isOk=0
-    mse_utest_messageSet "" 1
-    mse_utest_messageSet "Atenção"
-    mse_utest_messageSet ":: Nenhum diretório está definido para os testes."
-    mse_utest_messageSet "   Use a função 'mse_utest_setTargetDir' para definir cada diretório a ser testado"
-    mse_utest_messageSet ""
+    mse_utest_messageSet "${lbl_execute_testDirectoryNotDefined}" 1
     mse_utest_messageShow
   else
 
@@ -53,17 +51,17 @@ mse_utest_execute() {
       printf "\n"
 
       if [ ! -d "$mseTMPDIR" ]; then
-        mse_utest_messageSet "::" 1
-        mse_utest_messageSet ":: O diretório \"${mseTMPDIR}\" não existe"
+        mseMSG=$(mse_mod_replacePlaceHolder "DIR" "${mseTMPDIR}" "${lbl_execute_directoryDoesNotExists}")
+        mse_utest_messageSet "${mseMSG}" 1
         mse_utest_messageShow
       else
         if [ ! -d "$mseTMPDIR/tests" ]; then
-          mse_utest_messageSet "::" 1
-          mse_utest_messageSet ":: Diretório de testes inexistente: $mseTMPDIR/tests"
+          mseMSG=$(mse_mod_replacePlaceHolder "DIR" "${mseTMPDIR}/tests" "${lbl_execute_testDirectoryDoesNotExists}")
+          mse_utest_messageSet "${mseMSG}" 1
           mse_utest_messageShow
         else
-          mse_utest_messageSet "::" 1
-          mse_utest_messageSet ":: Iniciando testes em: $mseTMPDIR"
+          mseMSG=$(mse_mod_replacePlaceHolder "DIR" "${mseTMPDIR}" "${lbl_execute_startTestsIn}")
+          mse_utest_messageSet "${mseMSG}" 1
           mse_utest_messageShow
 
 
@@ -75,12 +73,12 @@ mse_utest_execute() {
 
 
           if [ "$mseFiles" == "" ]; then
-            mse_utest_messageSet "::" 1
-            mse_utest_messageSet ":: Diretório vazio: $mseTMPDIR"
+            mseMSG=$(mse_mod_replacePlaceHolder "DIR" "${mseTMPDIR}/scripts" "${lbl_execute_emptyScriptDir}")
+            mse_utest_messageSet "${mseMSG}" 1
             mse_utest_messageShow
           elif [ "$mseTestFiles" == "" ]; then
-            mse_utest_messageSet "::" 1
-            mse_utest_messageSet ":: Diretório de testes vazio: $mseTMPDIR/tests"
+            mseMSG=$(mse_mod_replacePlaceHolder "DIR" "${mseTMPDIR}/tests" "${lbl_execute_emptyTestDir}")
+            mse_utest_messageSet "${mseMSG}" 1
             mse_utest_messageShow
           else
 
@@ -128,11 +126,11 @@ mse_utest_execute() {
   LC_CTYPE="${tmp_LC_CTYPE}"
 
   mse_utest_messageSet "" 1
-  mse_utest_messageSet "Resumo dos testes"
-  mse_utest_messageSet ":: Scripts testados   : $mseCountTests"
-  mse_utest_messageSet ":: Testes executados  : $mseCountAssert"
-  mse_utest_messageSet ":: Sucesso            : $testCountSuccess"
-  mse_utest_messageSet ":: Falhas             : $testCountFailed"
+  mse_utest_messageSet "${lbl_execute_results}"
+  mse_utest_messageSet "${lbl_execute_results_count_scri} $mseCountTests"
+  mse_utest_messageSet "${lbl_execute_results_count_test} $mseCountAssert"
+  mse_utest_messageSet "${lbl_execute_results_count_succ} $testCountSuccess"
+  mse_utest_messageSet "${lbl_execute_results_count_fail} $testCountFailed"
   mse_utest_messageSet ""
   mse_utest_messageShow
 }
