@@ -31,7 +31,7 @@ if [[ $(type -t "mse_mod_registerModule") != function ]]; then
     MSE_TMP_ISOK=0
     printf "\n"
     printf "    Attention\n"
-    printf "    The module \"[[Shell-MSE-Main-Module]]\" was not loaded.\n"
+    printf "    The module \"Shell-MSE-Main-Module\" was not loaded.\n"
     printf "    Use the following commands to load it:\n"
     printf "    - git submodule update --remote \n"
     printf "\n"
