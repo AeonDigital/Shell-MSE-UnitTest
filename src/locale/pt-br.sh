@@ -43,8 +43,6 @@ lbl_execute_results_count_test=":: Testes executados  :"
 lbl_execute_results_count_succ=":: Sucesso            :"
 lbl_execute_results_count_fail=":: Falhas             :"
 
-lbl_messageShow_emptyArray="o array MSE_MD_UTEST_LOG_MESSAGES está vazio"
-
 lbl_setTargetDir_directoryDoesNotExists+="\n"
 lbl_setTargetDir_directoryDoesNotExists+="    Atenção"
 lbl_setTargetDir_directoryDoesNotExists+="    O diretório indicado não existe.\n"
