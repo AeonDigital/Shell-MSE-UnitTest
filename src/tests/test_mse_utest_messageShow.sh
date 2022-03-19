@@ -13,7 +13,7 @@ test_mse_utest_messageShow() {
   #
   MSE_MD_UTEST_LOG_MESSAGES=()
   testResult=$(mse_utest_messageShow)
-  testExpected=$(echo "${MSE_MD_UTEST_LOG_MESSAGES_INDENT}${MSE_MD_UTEST_LOG_MESSAGES_INDENT}ERROR (in mse_utest_messageShow) : empty array MSE_MD_UTEST_LOG_MESSAGES")
+  testExpected=$(printf "${MSE_MD_UTEST_LOG_MESSAGES_INDENT}${MSE_MD_UTEST_LOG_MESSAGES_INDENT}ERROR (in mse_utest_messageShow) : empty array MSE_MD_UTEST_LOG_MESSAGES")
 
   mse_utest_assertEqual
 
@@ -22,7 +22,7 @@ test_mse_utest_messageShow() {
   #
   mse_utest_messageSet "item 1"
   testResult=$(mse_utest_messageShow)
-  testExpected=$(echo "${MSE_MD_UTEST_LOG_MESSAGES_INDENT}item 1")
+  testExpected=$(printf "${MSE_MD_UTEST_LOG_MESSAGES_INDENT}item 1")
 
   mse_utest_assertEqual
 }

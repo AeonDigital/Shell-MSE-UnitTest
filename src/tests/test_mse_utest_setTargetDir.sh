@@ -13,7 +13,7 @@ test_mse_utest_setTargetDir() {
   #
   MSE_MD_UTEST_LOG_MESSAGES=()
   testResult=$(mse_utest_setTargetDir)
-  testExpected=$(echo "${MSE_MD_UTEST_LOG_MESSAGES_INDENT}${MSE_MD_UTEST_LOG_MESSAGES_INDENT}ERROR (in mse_utest_setTargetDir) : lost argument")
+  testExpected=$(printf "${MSE_MD_UTEST_LOG_MESSAGES_INDENT}${MSE_MD_UTEST_LOG_MESSAGES_INDENT}ERROR (in mse_utest_setTargetDir) : lost argument")
 
   mse_utest_assertEqual
 

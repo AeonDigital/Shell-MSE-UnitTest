@@ -12,7 +12,7 @@
 test_mse_utest_messageSet() {
   #
   testResult=$(mse_utest_messageSet)
-  testExpected=$(echo "${MSE_MD_UTEST_LOG_MESSAGES_INDENT}${MSE_MD_UTEST_LOG_MESSAGES_INDENT}ERROR (in mse_utest_messageSet) : lost argument")
+  testExpected=$(printf "${MSE_MD_UTEST_LOG_MESSAGES_INDENT}${MSE_MD_UTEST_LOG_MESSAGES_INDENT}ERROR (in mse_utest_messageSet) : lost argument")
 
   mse_utest_assertEqual
 
@@ -20,8 +20,8 @@ test_mse_utest_messageSet() {
 
   #
   MSE_MD_UTEST_LOG_MESSAGES=()
-  testResult=$(echo ${#MSE_MD_UTEST_LOG_MESSAGES[@]})
-  testExpected=$(echo "0")
+  testResult=$(printf ${#MSE_MD_UTEST_LOG_MESSAGES[@]})
+  testExpected=$(printf "0")
 
   mse_utest_assertEqual
 
@@ -29,8 +29,8 @@ test_mse_utest_messageSet() {
 
   #
   mse_utest_messageSet "item 1"
-  testResult=$(echo ${#MSE_MD_UTEST_LOG_MESSAGES[@]})
-  testExpected=$(echo "1")
+  testResult=$(printf ${#MSE_MD_UTEST_LOG_MESSAGES[@]})
+  testExpected=$(printf "1")
 
   mse_utest_assertEqual
 
@@ -39,8 +39,8 @@ test_mse_utest_messageSet() {
   #
   mse_utest_messageSet "item 1"
   mse_utest_messageSet "item 2"
-  testResult=$(echo ${#MSE_MD_UTEST_LOG_MESSAGES[@]})
-  testExpected=$(echo "2")
+  testResult=$(printf ${#MSE_MD_UTEST_LOG_MESSAGES[@]})
+  testExpected=$(printf "2")
 
   mse_utest_assertEqual
 
@@ -48,8 +48,8 @@ test_mse_utest_messageSet() {
 
   #
   mse_utest_messageSet "nova mensagem" 1
-  testResult=$(echo ${#MSE_MD_UTEST_LOG_MESSAGES[@]})
-  testExpected=$(echo "1")
+  testResult=$(printf ${#MSE_MD_UTEST_LOG_MESSAGES[@]})
+  testExpected=$(printf "1")
 
   mse_utest_assertEqual
 }
