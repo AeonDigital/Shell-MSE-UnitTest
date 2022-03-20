@@ -1,4 +1,4 @@
-#!/bin/bash -eu
+#!/usr/bin/env bash
 # myShellEnv v 1.0 [aeondigital.com.br]
 #
 # No diretório raiz use o comando abaixo para carregar o módulo
@@ -14,6 +14,7 @@
 
 #
 # Configuração para o registro deste módulo
+set -eu
 MSE_TMP_THIS_MODULE_NAME="Shell-MSE-UnitTest"
 MSE_TMP_THIS_MODULE_DIRECTORY=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
 MSE_TMP_ISOK=1
