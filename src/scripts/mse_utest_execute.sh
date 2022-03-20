@@ -86,12 +86,12 @@ mse_utest_execute() {
             # Carrega os arquivos de scripts e testes
             while read rawLine
             do
-              source "$rawLine"
+              . "$rawLine"
             done <<< ${mseFiles}
 
             while read rawLine
             do
-              source "$rawLine"
+              . "$rawLine"
             done <<< ${mseTestFiles}
 
 

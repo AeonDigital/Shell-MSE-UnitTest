@@ -38,7 +38,7 @@ if [ "$(type -t "mse_mod_registerModule")" != "function" ]; then
   else
     #
     # Carrega o módulo principal.
-    source "${MSE_TMP_PATH_TO_MAIN_MODULE_INIT_SCRIPT}"
+    . "${MSE_TMP_PATH_TO_MAIN_MODULE_INIT_SCRIPT}"
   fi
 
   unset MSE_TMP_PATH_TO_MAIN_MODULE_INIT_SCRIPT
@@ -56,7 +56,7 @@ if [ ${MSE_TMP_ISOK} == 1 ]; then
   if [ ! -f "${MSE_TMP_PATH_TO_LOCALE}" ]; then
     MSE_TMP_PATH_TO_LOCALE="${MSE_TMP_THIS_MODULE_DIRECTORY}/locale/en-us.sh"
   fi
-  source "${MSE_TMP_PATH_TO_LOCALE}"
+  . "${MSE_TMP_PATH_TO_LOCALE}"
   unset MSE_TMP_PATH_TO_LOCALE
 
 
@@ -64,13 +64,13 @@ if [ ${MSE_TMP_ISOK} == 1 ]; then
   #
   # Carrega as variáveis do módulo caso um arquivo 'variables.sh' esteja definido
   if [ -f "${MSE_TMP_THIS_MODULE_DIRECTORY}/config/variables.sh" ]; then
-    source "${MSE_TMP_THIS_MODULE_DIRECTORY}/config/variables.sh"
+    . "${MSE_TMP_THIS_MODULE_DIRECTORY}/config/variables.sh"
   fi
 
   #
   # Carrega os 'aliases' do módulo caso um arquivo 'aliases.sh' esteja definido
   if [ -f "${MSE_TMP_THIS_MODULE_DIRECTORY}/config/aliases.sh" ]; then
-    source "${MSE_TMP_THIS_MODULE_DIRECTORY}/config/aliases.sh"
+    . "${MSE_TMP_THIS_MODULE_DIRECTORY}/config/aliases.sh"
   fi
 
   #
