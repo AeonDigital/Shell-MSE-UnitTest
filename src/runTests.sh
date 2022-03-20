@@ -7,7 +7,6 @@
 
 
 
-set -eu
 MSE_TMP_THIS_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd );
 . "${MSE_TMP_THIS_DIR}/init.sh"
 
