@@ -14,11 +14,8 @@
 
 #
 # Configuração para o registro deste módulo
-MSE_TMP_THIS_MODULE_NAME="Shell-MSE-UnitTest"
 MSE_TMP_THIS_MODULE_DIRECTORY=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
-MSE_TMP_ISOK=1
-MSE_TMP_THIS_MODULE_DEPENDENCY=()
-
+. "${MSE_TMP_THIS_MODULE_DIRECTORY}/config/load.sh"
 
 
 #

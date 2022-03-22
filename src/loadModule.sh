@@ -10,11 +10,11 @@
 #
 # Identifica o tipo de inicialização
 if [ -z ${MSE_TMP_THIS_MODULE_NAME+x} ]; then
-  MSE_TMP_ISOK=1
-  MSE_TMP_STANDALONE=1
   MSE_TMP_THIS_MODULE_DIRECTORY=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
+  . "${MSE_TMP_THIS_MODULE_DIRECTORY}/config/load.sh"
 
-  MSE_TMP_THIS_MODULE_DEPENDENCY=()
+  MSE_TMP_STANDALONE=1
+  unset MSE_TMP_THIS_MODULE_NAME
 fi
 
 
@@ -85,6 +85,7 @@ if [ $MSE_TMP_ISOK == 1 ]; then
       #
       # Conforme o tipo de inicialização...
       if [ $MSE_TMP_STANDALONE == 0 ]; then
+
         #
         # Se o módulo ainda não foi carregado
         mseIsDependencyModuleLoaded=$(mse_mod_checkIfHasValueInArray "${mseDependency}" "MSE_GLOBAL_MODULES_NAMES")
@@ -92,7 +93,9 @@ if [ $MSE_TMP_ISOK == 1 ]; then
           msePathToModule="${MSE_TMP_THIS_MODULE_DIRECTORY}/../${mseDependency}/src/init.sh"
           if [ -f "${msePathToModule}" ]; then
             . "${msePathToModule}"
+
             MSE_TMP_THIS_MODULE_DIRECTORY=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
+            . "${MSE_TMP_THIS_MODULE_DIRECTORY}/config/load.sh"
           else
             MSE_TMP_ISOK=0
             mse_mod_replacePlaceHolder "MODULE" "${mseDependency}" "${lbl_generic_ModuleNotFound}"
@@ -102,10 +105,14 @@ if [ $MSE_TMP_ISOK == 1 ]; then
 
         unset mseIsDependencyModuleLoaded
       else
+
         msePathToModule="${MSE_TMP_THIS_MODULE_DIRECTORY}/../${mseDependency}/src/loadModule.sh"
         if [ -f "${msePathToModule}" ]; then
           . "${msePathToModule}"
+
           MSE_TMP_THIS_MODULE_DIRECTORY=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
+          . "${MSE_TMP_THIS_MODULE_DIRECTORY}/config/load.sh"
+          MSE_TMP_STANDALONE=1
         else
           printf "\n"
           printf "    Attention\n"
