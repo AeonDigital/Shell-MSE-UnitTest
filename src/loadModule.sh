@@ -105,6 +105,7 @@ if [ $MSE_TMP_ISOK == 1 ]; then
         msePathToModule="${MSE_TMP_THIS_MODULE_DIRECTORY}/../${mseDependency}/src/loadModule.sh"
         if [ -f "${msePathToModule}" ]; then
           . "${msePathToModule}"
+          MSE_TMP_THIS_MODULE_DIRECTORY=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
         else
           printf "\n"
           printf "    Attention\n"
