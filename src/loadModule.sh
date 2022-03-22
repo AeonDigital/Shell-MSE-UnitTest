@@ -112,7 +112,9 @@ if [ $MSE_TMP_ISOK == 1 ]; then
 
           MSE_TMP_THIS_MODULE_DIRECTORY=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
           . "${MSE_TMP_THIS_MODULE_DIRECTORY}/config/load.sh"
+
           MSE_TMP_STANDALONE=1
+          unset MSE_TMP_THIS_MODULE_NAME
         else
           printf "\n"
           printf "    Attention\n"
