@@ -18,14 +18,14 @@ mse_utest_setTargetDir() {
   local isOk=1
 
   if [ $# != 1 ]; then
-    mse_mod_errorAlert "${FUNCNAME[0]}" "${lbl_genericError_lostArgument}"
+    mse_mmod_errorAlert "${FUNCNAME[0]}" "${lbl_genericError_lostArgument}"
   else
 
     #
     # Verifica se o diretório alvo existe:
     if [ ! -d "$1" ]; then
       local mseMSG
-      mseMSG=$(mse_mod_replacePlaceHolder "DIR" "$1" "${lbl_setTargetDir_directoryDoesNotExists}")
+      mseMSG=$(mse_mmod_replacePlaceHolder "DIR" "$1" "${lbl_setTargetDir_directoryDoesNotExists}")
       mse_utest_messageSet "${mseMSG}" 1
       mse_utest_messageShow
     else

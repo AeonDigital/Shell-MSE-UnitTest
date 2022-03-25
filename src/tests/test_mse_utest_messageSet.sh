@@ -12,7 +12,7 @@
 test_mse_utest_messageSet() {
   #
   testResult=$(mse_utest_messageSet)
-  testExpected=$(printf "${MSE_MD_UTEST_LOG_MESSAGES_INDENT}${MSE_MD_UTEST_LOG_MESSAGES_INDENT}ERROR (in mse_utest_messageSet) : lost argument")
+  testExpected=$(printf "${MSE_MD_UTEST_LOG_MESSAGES_INDENT}ERROR (in mse_utest_messageSet) : lost argument")
 
   mse_utest_assertEqual
 

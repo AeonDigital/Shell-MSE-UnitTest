@@ -51,16 +51,16 @@ mse_utest_execute() {
       printf "\n"
 
       if [ ! -d "$mseTMPDIR" ]; then
-        mseMSG=$(mse_mod_replacePlaceHolder "DIR" "${mseTMPDIR}" "${lbl_execute_directoryDoesNotExists}")
+        mseMSG=$(mse_mmod_replacePlaceHolder "DIR" "${mseTMPDIR}" "${lbl_execute_directoryDoesNotExists}")
         mse_utest_messageSet "${mseMSG}" 1
         mse_utest_messageShow
       else
         if [ ! -d "$mseTMPDIR/tests" ]; then
-          mseMSG=$(mse_mod_replacePlaceHolder "DIR" "${mseTMPDIR}/tests" "${lbl_execute_testDirectoryDoesNotExists}")
+          mseMSG=$(mse_mmod_replacePlaceHolder "DIR" "${mseTMPDIR}/tests" "${lbl_execute_testDirectoryDoesNotExists}")
           mse_utest_messageSet "${mseMSG}" 1
           mse_utest_messageShow
         else
-          mseMSG=$(mse_mod_replacePlaceHolder "DIR" "${mseTMPDIR}" "${lbl_execute_startTestsIn}")
+          mseMSG=$(mse_mmod_replacePlaceHolder "DIR" "${mseTMPDIR}" "${lbl_execute_startTestsIn}")
           mse_utest_messageSet "${mseMSG}" 1
           mse_utest_messageShow
 
@@ -73,11 +73,11 @@ mse_utest_execute() {
 
 
           if [ "$mseFiles" == "" ]; then
-            mseMSG=$(mse_mod_replacePlaceHolder "DIR" "${mseTMPDIR}/scripts" "${lbl_execute_emptyScriptDir}")
+            mseMSG=$(mse_mmod_replacePlaceHolder "DIR" "${mseTMPDIR}/scripts" "${lbl_execute_emptyScriptDir}")
             mse_utest_messageSet "${mseMSG}" 1
             mse_utest_messageShow
           elif [ "$mseTestFiles" == "" ]; then
-            mseMSG=$(mse_mod_replacePlaceHolder "DIR" "${mseTMPDIR}/tests" "${lbl_execute_emptyTestDir}")
+            mseMSG=$(mse_mmod_replacePlaceHolder "DIR" "${mseTMPDIR}/tests" "${lbl_execute_emptyTestDir}")
             mse_utest_messageSet "${mseMSG}" 1
             mse_utest_messageShow
           else
