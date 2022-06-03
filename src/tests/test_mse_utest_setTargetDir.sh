@@ -26,7 +26,7 @@ test_mse_utest_setTargetDir() {
   tmpExpected+="${MSE_MD_UTEST_LOG_MESSAGES_INDENT}Attention\n"
   tmpExpected+="${MSE_MD_UTEST_LOG_MESSAGES_INDENT}The specified directory does not exist.\n"
   tmpExpected+="${MSE_MD_UTEST_LOG_MESSAGES_INDENT}[[DIR]]\n"
-  testExpected=$(mse_mmod_replacePlaceHolder "DIR" "nonexist-dir" "${tmpExpected}")
+  testExpected=$(mse_str_replacePlaceHolder "${tmpExpected}" "DIR" "nonexist-dir")
 
   mse_utest_assertEqual
 }

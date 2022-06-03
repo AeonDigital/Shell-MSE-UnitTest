@@ -23,14 +23,8 @@
 #   mse_utest_messageSet "Atenção" 1
 #   mse_utest_messageSet "Todos os arquivos serão excluídos."
 mse_utest_messageSet() {
-  if [ $# != 1 ] && [ $# != 2 ]; then
-    mse_mmod_errorAlert "${FUNCNAME[0]}" "${lbl_genericError_lostArgument}"
-  else
-    if [ $# == 2 ] && [ $2 == 1 ]; then
-      MSE_MD_UTEST_LOG_MESSAGES=()
-    fi
-
-    local mseLength=${#MSE_MD_UTEST_LOG_MESSAGES[@]}
-    MSE_MD_UTEST_LOG_MESSAGES[mseLength]=$1
+  if [ $# == 2 ] && [ $2 == 1 ]; then
+    MSE_MD_UTEST_LOG_MESSAGES=()
   fi
+  MSE_MD_UTEST_LOG_MESSAGES+=("$1")
 }

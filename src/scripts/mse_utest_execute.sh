@@ -51,16 +51,16 @@ mse_utest_execute() {
       printf "\n"
 
       if [ ! -d "$mseTMPDIR" ]; then
-        mseMSG=$(mse_mmod_replacePlaceHolder "DIR" "${mseTMPDIR}" "${lbl_execute_directoryDoesNotExists}")
+        mseMSG=$(mse_str_replacePlaceHolder "${lbl_execute_directoryDoesNotExists}" "DIR" "${mseTMPDIR}")
         mse_utest_messageSet "${mseMSG}" 1
         mse_utest_messageShow
       else
         if [ ! -d "$mseTMPDIR/tests" ]; then
-          mseMSG=$(mse_mmod_replacePlaceHolder "DIR" "${mseTMPDIR}/tests" "${lbl_execute_testDirectoryDoesNotExists}")
+          mseMSG=$(mse_str_replacePlaceHolder "${lbl_execute_testDirectoryDoesNotExists}" "DIR" "${mseTMPDIR}/tests")
           mse_utest_messageSet "${mseMSG}" 1
           mse_utest_messageShow
         else
-          mseMSG=$(mse_mmod_replacePlaceHolder "DIR" "${mseTMPDIR}" "${lbl_execute_startTestsIn}")
+          mseMSG=$(mse_str_replacePlaceHolder "${lbl_execute_startTestsIn}" "DIR" "${mseTMPDIR}")
           mse_utest_messageSet "${mseMSG}" 1
           mse_utest_messageShow
 
@@ -68,16 +68,16 @@ mse_utest_execute() {
           #
           # Identifica os arquivos de script (sh) do diretório principal
           # e os arquivos de teste correspondentes
-          local mseFiles=$(find "${mseTMPDIR}/scripts" -maxdepth 1 -name "*.sh")
-          local mseTestFiles=$(find "$mseTMPDIR/tests" -maxdepth 1 -name "*.sh")
+          local mseFiles=$(find "${mseTMPDIR}/scripts" -type f -name "*.sh")
+          local mseTestFiles=$(find "$mseTMPDIR/tests" -type f -not -path "$mseTMPDIR/tests/00_assets/*" -name "*.sh")
 
 
           if [ "$mseFiles" == "" ]; then
-            mseMSG=$(mse_mmod_replacePlaceHolder "DIR" "${mseTMPDIR}/scripts" "${lbl_execute_emptyScriptDir}")
+            mseMSG=$(mse_str_replacePlaceHolder "${lbl_execute_emptyScriptDir}" "DIR" "${mseTMPDIR}/scripts")
             mse_utest_messageSet "${mseMSG}" 1
             mse_utest_messageShow
           elif [ "$mseTestFiles" == "" ]; then
-            mseMSG=$(mse_mmod_replacePlaceHolder "DIR" "${mseTMPDIR}/tests" "${lbl_execute_emptyTestDir}")
+            mseMSG=$(mse_str_replacePlaceHolder "${lbl_execute_emptyTestDir}" "DIR" "${mseTMPDIR}/tests")
             mse_utest_messageSet "${mseMSG}" 1
             mse_utest_messageShow
           else

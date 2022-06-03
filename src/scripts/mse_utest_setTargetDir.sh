@@ -25,12 +25,11 @@ mse_utest_setTargetDir() {
     # Verifica se o diretório alvo existe:
     if [ ! -d "$1" ]; then
       local mseMSG
-      mseMSG=$(mse_mmod_replacePlaceHolder "DIR" "$1" "${lbl_setTargetDir_directoryDoesNotExists}")
+      mseMSG=$(mse_str_replacePlaceHolder "${lbl_setTargetDir_directoryDoesNotExists}" "DIR" "$1")
       mse_utest_messageSet "${mseMSG}" 1
       mse_utest_messageShow
     else
-      local mseLength=${#MSE_MD_UTEST_TARGET_DIRS[@]}
-      MSE_MD_UTEST_TARGET_DIRS[mseLength]=$1
+      MSE_MD_UTEST_TARGET_DIRS+=("${1}")
     fi;
   fi;
 }
