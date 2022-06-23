@@ -86,7 +86,11 @@ mse_utest_execute() {
             # Carrega os arquivos de scripts e testes
             while read rawLine
             do
-              . "$rawLine"
+              #
+              # Ignora todos scripts de locales
+              if [[ ! ${rawLine} =~ "/assets/locale/" ]]; then
+                . "$rawLine"
+              fi
             done <<< ${mseFiles}
 
             while read rawLine
