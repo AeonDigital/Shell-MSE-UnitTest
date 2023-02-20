@@ -32,10 +32,10 @@ lbl_execute_startTestsIn+="    ::\n"
 lbl_execute_startTestsIn+="    :: Starting tests on : \"[[DIR]]\"\n"
 
 lbl_execute_emptyScriptDir+="\n"
-lbl_execute_emptyScriptDir+="    :: Diretório de scripts está vazio : \"[[DIR]]\"\n"
+lbl_execute_emptyScriptDir+="    :: Scripts directory is empty : \"[[DIR]]\"\n"
 
 lbl_execute_emptyTestDir+="\n"
-lbl_execute_emptyTestDir+="    :: Diretório de testes está vazio : \"[[DIR]]\"\n"
+lbl_execute_emptyTestDir+="    :: Test directory is empty : \"[[DIR]]\"\n"
 
 lbl_execute_results="Test results"
 lbl_execute_results_count_scri=":: Tested scripts     :"
