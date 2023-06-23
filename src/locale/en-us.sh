@@ -2,8 +2,55 @@
 # myShellEnv v 1.0 [aeondigital.com.br]
 
 
+lbl_check_functionsScriptsNotDefined=""
+lbl_check_functionsScriptsNotDefined+="\n"
+lbl_check_functionsScriptsNotDefined+="  Attention\n"
+lbl_check_functionsScriptsNotDefined+="  No function or script has been defined to run the tests.\n\n"
+lbl_check_functionsScriptsNotDefined+="  Fill in the associative array 'MSE_MD_UTEST_FUNCTIONS_TO_SRC' \n"
+lbl_check_functionsScriptsNotDefined+="  with the name (key) of each function to be tested and the full \n"
+lbl_check_functionsScriptsNotDefined+="  path to the script that defines its source code (value)."
 
 
+lbl_check_testScriptNotDefined=""
+lbl_check_testScriptNotDefined+="\n"
+lbl_check_testScriptNotDefined+="  Attention\n"
+lbl_check_testScriptNotDefined+="  No functions or tests scripts have been set to run.\n\n"
+lbl_check_testScriptNotDefined+="  Fill in the associative array 'MSE_MD_UTEST_FUNCTIONS_TO_TEST' \n"
+lbl_check_testScriptNotDefined+="  with the name (key) of each function to be tested and the full \n"
+lbl_check_testScriptNotDefined+="  path to the script that defines its tests source code (value)."
+
+
+lbl_check_testsAndFunctionsCountDoesNotMatch=""
+lbl_check_testsAndFunctionsCountDoesNotMatch+="\n"
+lbl_check_testsAndFunctionsCountDoesNotMatch+="  Attention\n"
+lbl_check_testsAndFunctionsCountDoesNotMatch+="  Function script count does not match number of test scripts.\n\n"
+lbl_check_testsAndFunctionsCountDoesNotMatch+="  Please fix it and try again."
+
+
+lbl_check_testWithoutFunction=""
+lbl_check_testWithoutFunction+="\n"
+lbl_check_testWithoutFunction+="  Attention\n"
+lbl_check_testWithoutFunction+="  Test for function \"[[FUNCTION]]\" defined without function source code.\n\n"
+lbl_check_testWithoutFunction+="  Review the selection of items to test and try again.\n"
+
+
+lbl_check_fileDoesNotExists=""
+lbl_check_fileDoesNotExists+="\n"
+lbl_check_fileDoesNotExists+="  Attention\n"
+lbl_check_fileDoesNotExists+="  :: File \"[[FILE]]\" does not exist.\n"
+
+
+
+lbl_execute_startUnitTests=""
+lbl_execute_startUnitTests+="\n"
+lbl_execute_startUnitTests+="::\n"
+lbl_execute_startUnitTests+=":: Starting unit tests\n"
+
+lbl_execute_results="Test results"
+lbl_execute_results_count_scri=":: Tested scripts     :"
+lbl_execute_results_count_test=":: Tests performed    :"
+lbl_execute_results_count_succ=":: Success            :"
+lbl_execute_results_count_fail=":: Failed             :"
 
 
 
@@ -13,37 +60,9 @@ lbl_assertResult_Result="Result    :"
 lbl_assertResult_Expect="Expected  :"
 
 
-lbl_execute_testDirectoryNotDefined+="\n"
-lbl_execute_testDirectoryNotDefined+="    Attention\n"
-lbl_execute_testDirectoryNotDefined+="    No directory is defined for the tests.\n"
-lbl_execute_testDirectoryNotDefined+="    Use 'mse_utest_setTargetDir' function to set each directory to be tested.\n"
-
-
-lbl_execute_directoryDoesNotExists+="\n"
-lbl_execute_directoryDoesNotExists+="    ::\n"
-lbl_execute_directoryDoesNotExists+="    :: Directory \"[[DIR]]\" does not exist.\n"
-
-lbl_execute_testDirectoryDoesNotExists+="\n"
-lbl_execute_testDirectoryDoesNotExists+="    ::\n"
-lbl_execute_testDirectoryDoesNotExists+="    :: Test directory does not exist : \"[[DIR]]\"\n"
-
-lbl_execute_startTestsIn+="\n"
-lbl_execute_startTestsIn+="    ::\n"
-lbl_execute_startTestsIn+="    :: Starting tests on : \"[[DIR]]\"\n"
-
-lbl_execute_emptyScriptDir+="\n"
-lbl_execute_emptyScriptDir+="    :: Scripts directory is empty : \"[[DIR]]\"\n"
-
-lbl_execute_emptyTestDir+="\n"
-lbl_execute_emptyTestDir+="    :: Test directory is empty : \"[[DIR]]\"\n"
-
-lbl_execute_results="Test results"
-lbl_execute_results_count_scri=":: Tested scripts     :"
-lbl_execute_results_count_test=":: Tests performed    :"
-lbl_execute_results_count_succ=":: Success            :"
-lbl_execute_results_count_fail=":: Failed             :"
-
-lbl_setTargetDir_directoryDoesNotExists+="\n"
-lbl_setTargetDir_directoryDoesNotExists+="    Attention\n"
-lbl_setTargetDir_directoryDoesNotExists+="    The specified directory does not exist.\n"
-lbl_setTargetDir_directoryDoesNotExists+="    [[DIR]]\n"
+lbl_assertArray_invalidTypeArrays="Invalid type of arrays (\$1); Given \"[[ARRAY_TYPE]]\". Expected \"a\" or \"A\"."
+lbl_assertArray_resultIsNotAnArray="The control variable \"testResult\" is not an array"
+lbl_assertArray_expectedIsNotAnArray="The control variable \"testExpected\" is not an array"
+lbl_assertArray_countElementsDoesNotMatch="The number of items in the \"testResult\" array does not match. Expected [[COUNT_EXPECTED]] but found [[COUNT_RESULT]]"
+lbl_assertArray_resultIsNotAnAssoc="The control variable \"testResult\" is not an associative array"
+lbl_assertArray_expectedIsNotAnAssoc="The control variable \"testExpected\" is not an associative array"
