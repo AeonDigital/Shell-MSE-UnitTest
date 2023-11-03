@@ -8,7 +8,6 @@ Shell-MSE-UnitTest
 &nbsp;
 
 Implementação básica de testes unitários para os módulos ``myShellEnv``.  
-Este projeto depende da instalação prévia do módulo principal [myShellEnv](https://github.com/AeonDigital/Shell-MSE-Main-Module).  
 
 
 &nbsp;
@@ -17,18 +16,17 @@ Este projeto depende da instalação prévia do módulo principal [myShellEnv](h
 
 ## Importante
 
-Este projeto foi feito para uso pessoal em um universo restrito mais como uma prova de conceito e aprendizado do que 
-para fins profissionais que exijam um alto grau de consistência.  
-Até onde precisei, funcionou como esperado me dando um feedback preciso sobre os scripts em que os testes unitários 
-foram implementados.  
+Este projeto foi feito para uso pessoal em um universo restrito mais como uma 
+prova de conceito e aprendizado do que para fins profissionais que exijam um 
+alto grau de consistência.  
+Até onde precisei, funcionou como esperado me dando um feedback preciso sobre 
+os scripts em que os testes unitários foram implementados.  
 
 
 &nbsp;
 &nbsp;
 
-________________________________________________________________________________________________________________________
-
-
+________________________________________________________________________________
 
 ## Licença
 

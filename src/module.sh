@@ -3,22 +3,6 @@
 
 
 #
-# This file is responsible for initiating constants, variables and global
-# functions for the operation of the module as a whole.
-
-unset MSE_GLOBAL_MD_MAIN_PATH
-declare -g MSE_GLOBAL_MD_MAIN_PATH=$(dirname $(dirname $(readlink -f "${BASH_SOURCE}")))
-
-
-
-# GLOBAL SETTINGS
-if [ -z ${MSE_GLOBAL_MODULES_USE_LOCALE+x} ]; then
-  declare -g MSE_GLOBAL_MODULES_USE_LOCALE="en-us"
-fi
-. "${MSE_GLOBAL_MD_MAIN_PATH}/src/locale/${MSE_GLOBAL_MODULES_USE_LOCALE}.sh"
-
-
-
 # GLOBAL FUNCTION VARIABLES
 
 #
@@ -57,13 +41,21 @@ declare -ga MSE_MD_UTEST_LOG_MESSAGES_INDENT="  "
 #
 # [bool] MSE_MD_UTEST_STOP_ON_FIRST_FAIL
 unset MSE_MD_UTEST_STOP_ON_FIRST_FAIL
-declare -g MSE_MD_UTEST_STOP_ON_FIRST_FAIL=0
+declare -g MSE_MD_UTEST_STOP_ON_FIRST_FAIL="0"
 
 
 
 
 
+#
+# LABELS
+. "${MSE_GLOBAL_UTEST_MAIN_PATH}/src/locale/${MSE_GLOBAL_MODULES_USE_LOCALE}.sh"
 
+
+
+
+
+#
 # FUNCTIONS
 
 #
@@ -97,7 +89,7 @@ mse_md_utest_messageShow() {
 #   mse_md_utest_messageSet "Atenção" 1
 #   mse_md_utest_messageSet "Todos os arquivos serão excluídos."
 mse_md_utest_messageSet() {
-  if [ "$#" == "2" ] && [ "$2" == "1" ]; then
+  if [ "$#" == "2" ] && [ "${2}" == "1" ]; then
     unset MSE_MD_UTEST_LOG_MESSAGES
     declare -ga MSE_MD_UTEST_LOG_MESSAGES=()
   fi
@@ -114,11 +106,11 @@ mse_md_utest_assertEqual() {
 
   if [ "${testResult}" == "${testExpected}" ]; then
     ((testCountSuccess=testCountSuccess+1))
-    mse_md_utest_messageSet "${mseInnerCountTest} ${lbl_assertResult_Ok}" 1
+    mse_md_utest_messageSet "${mseInnerCountTest} ${lbl_assertResult_Ok}" "1"
     mse_md_utest_messageShow
   else
     ((testCountFailed=testCountFailed+1))
-    mse_md_utest_messageSet "${mseInnerCountTest} ${lbl_assertResult_Fail}" 1
+    mse_md_utest_messageSet "${mseInnerCountTest} ${lbl_assertResult_Fail}" "1"
     mse_md_utest_messageSet "${lbl_assertResult_Result} ${testResult}"
     mse_md_utest_messageSet "${lbl_assertResult_Expect} ${testExpected}"
     mse_md_utest_messageShow
@@ -151,7 +143,7 @@ mse_md_utest_assertArrays() {
 
   if [ "${mseTypeArrays}" != "a" ] && [ "${mseTypeArrays}" != "A" ]; then
     mseMSG="${lbl_assertArray_invalidTypeArrays/\[\[ARRAY_TYPE\]\]/${mseTypeArrays}}"
-    mse_md_utest_messageSet "${mseInnerCountTest} ${mseMSG}" 1
+    mse_md_utest_messageSet "${mseInnerCountTest} ${mseMSG}" "1"
   else
     local mseHasError="0"
     testResultType=$(declare -p "testResult" 2> /dev/null)
@@ -160,10 +152,10 @@ mse_md_utest_assertArrays() {
     if [ "${mseTypeArrays}" == "a" ]; then
       if [[ ! "${testResultType}" =~ "declare -a" ]]; then
         mseHasError="1"
-        mse_md_utest_messageSet "${mseInnerCountTest} ${lbl_assertArray_resultIsNotAnArray}" 1
+        mse_md_utest_messageSet "${mseInnerCountTest} ${lbl_assertArray_resultIsNotAnArray}" "1"
       elif [[ ! "${testExpectedType}" =~ "declare -a" ]]; then
         mseHasError="1"
-        mse_md_utest_messageSet "${mseInnerCountTest} ${lbl_assertArray_expectedIsNotAnArray}" 1
+        mse_md_utest_messageSet "${mseInnerCountTest} ${lbl_assertArray_expectedIsNotAnArray}" "1"
       else
         local mseExpectedCount="${#testExpected[@]}"
         local mseResultCount="${#testResult[@]}"
@@ -171,16 +163,16 @@ mse_md_utest_assertArrays() {
           mseHasError="1"
           mseMSG="${lbl_assertArray_countElementsDoesNotMatch/\[\[COUNT_EXPECTED\]\]/${mseExpectedCount}}"
           mseMSG="${mseMSG/\[\[COUNT_RESULT\]\]/${mseResultCount}}"
-          mse_md_utest_messageSet "${mseInnerCountTest} ${mseMSG}" 1
+          mse_md_utest_messageSet "${mseInnerCountTest} ${mseMSG}" "1"
         fi
       fi
     elif [ "${mseTypeArrays}" == "A" ]; then
       if [[ ! "${testResultType}" =~ "declare -A" ]]; then
         mseHasError="1"
-        mse_md_utest_messageSet "${mseInnerCountTest} ${lbl_assertArray_resultIsNotAnAssoc}" 1
+        mse_md_utest_messageSet "${mseInnerCountTest} ${lbl_assertArray_resultIsNotAnAssoc}" "1"
       elif [[ ! "${testExpectedType}" =~ "declare -A" ]]; then
         mseHasError="1"
-        mse_md_utest_messageSet "${mseInnerCountTest} ${lbl_assertArray_expectedIsNotAnAssoc}" 1
+        mse_md_utest_messageSet "${mseInnerCountTest} ${lbl_assertArray_expectedIsNotAnAssoc}" "1"
       fi
     fi
 
@@ -222,7 +214,7 @@ mse_md_utest_assertArrays() {
 
       if [ "${countMatch}" == "${#testExpected[@]}" ]; then
         ((testCountSuccess=testCountSuccess+1))
-        mse_md_utest_messageSet "${mseInnerCountTest} ${lbl_assertResult_Ok}" 1
+        mse_md_utest_messageSet "${mseInnerCountTest} ${lbl_assertResult_Ok}" "1"
       else
         ((testCountFailed=testCountFailed+1))
 
@@ -241,7 +233,7 @@ mse_md_utest_assertArrays() {
           done
         fi
 
-        mse_md_utest_messageSet "${mseInnerCountTest} ${lbl_assertResult_Fail}" 1
+        mse_md_utest_messageSet "${mseInnerCountTest} ${lbl_assertResult_Fail}" "1"
         mse_md_utest_messageSet "${lbl_assertResult_Result}"
         mse_md_utest_messageSet "${mseTmpResult}"
         mse_md_utest_messageSet "${lbl_assertResult_Expect}"
@@ -259,21 +251,21 @@ mse_md_utest_assertArrays() {
 #
 # Performs a series of checks to ensure that the tests are working correctly.
 mse_md_utest_checkDependenciesBeforeExecute() {
-  local mseReturn=0
+  local mseReturn="0"
   local mseMSG=""
 
 
   if [ "${#MSE_MD_UTEST_FUNCTIONS_TO_SRC[@]}" == "0" ]; then
-    mseReturn=1
+    mseReturn="1"
     mse_md_utest_messageSet "${lbl_check_functionsScriptsNotDefined}" "1"
   else
     if [ "${#MSE_MD_UTEST_FUNCTIONS_TO_TEST[@]}" == "0" ]; then
-      mseReturn=1
+      mseReturn="1"
       mse_md_utest_messageSet "${lbl_check_testScriptNotDefined}" "1"
     else
 
       if [ "${#MSE_MD_UTEST_FUNCTIONS_TO_SRC[@]}" != "${#MSE_MD_UTEST_FUNCTIONS_TO_TEST[@]}" ]; then
-        mseReturn=1
+        mseReturn="1"
         mse_md_utest_messageSet "${lbl_check_testsAndFunctionsCountDoesNotMatch}" "1"
       else
         local mseFunctionName
@@ -281,19 +273,19 @@ mse_md_utest_checkDependenciesBeforeExecute() {
         for mseFunctionName in "${!MSE_MD_UTEST_FUNCTIONS_TO_TEST[@]}"; do
           if [ "${mseReturn}" == "0" ]; then
             if [ -z "${MSE_MD_UTEST_FUNCTIONS_TO_SRC[$mseFunctionName]+x}" ]; then
-              mseReturn=1
+              mseReturn="1"
 
               mseMSG="${lbl_check_testWithoutFunction/\[\[FUNCTION\]\]/${mseFunctionName}}"
               mse_md_utest_messageSet "${mseMSG}" "1"
             else
               if [ ! -f "${MSE_MD_UTEST_FUNCTIONS_TO_TEST[${mseFunctionName}]}" ]; then
-                mseReturn=1
+                mseReturn="1"
 
                 mseMSG="${lbl_check_fileDoesNotExists/\[\[FILE\]\]/${MSE_MD_UTEST_FUNCTIONS_TO_TEST[${mseFunctionName}]}}"
                 mse_md_utest_messageSet "${mseMSG}" "1"
               else
                 if [ ! -f "${MSE_MD_UTEST_FUNCTIONS_TO_SRC[${mseFunctionName}]}" ]; then
-                  mseReturn=1
+                  mseReturn="1"
 
                   mseMSG="${lbl_check_fileDoesNotExists/\[\[FILE\]\]/${MSE_MD_UTEST_FUNCTIONS_TO_SRC[${mseFunctionName}]}}"
                   mse_md_utest_messageSet "${mseMSG}" "1"
@@ -316,6 +308,9 @@ mse_md_utest_checkDependenciesBeforeExecute() {
 }
 
 
+
+
+
 #
 # Runs the battery of defined unit tests.
 #
@@ -327,12 +322,12 @@ mse_md_utest_checkDependenciesBeforeExecute() {
 mse_md_utest_execute() {
 
   mse_md_utest_checkDependenciesBeforeExecute
-  if [ $? == 0 ]; then
-    local mseCountTests=0
-    local mseCountAssert=0
+  if [ "$?" == "0" ]; then
+    local mseCountTests="0"
+    local mseCountAssert="0"
 
-    local testCountSuccess=0
-    local testCountFailed=0
+    local testCountSuccess="0"
+    local testCountFailed="0"
 
     local mseIterator
     local mseFunctionName
@@ -367,7 +362,7 @@ mse_md_utest_execute() {
 
 
     for mseFunctionName in "${mseFunctionsInAscOrder[@]}"; do
-      if [ "$1" == "" ] || [ "$1" == "${mseFunctionName}" ]; then
+      if [ "${1}" == "" ] || [ "${1}" == "${mseFunctionName}" ]; then
         local mseTestFullFileName="test_${mseFunctionName}"
 
         local testResult=""
@@ -376,7 +371,7 @@ mse_md_utest_execute() {
 
         ((mseCountTests=mseCountTests+1))
 
-        mse_md_utest_messageSet "" 1
+        mse_md_utest_messageSet "" "1"
         mse_md_utest_messageSet "::"
         mse_md_utest_messageSet ":: ${mseFunctionName}"
         mse_md_utest_messageShow
@@ -391,7 +386,7 @@ mse_md_utest_execute() {
     done
 
 
-    mse_md_utest_messageSet "" 1
+    mse_md_utest_messageSet "" "1"
     mse_md_utest_messageSet "${lbl_execute_results}"
     mse_md_utest_messageSet "${lbl_execute_results_count_scri} $mseCountTests"
     mse_md_utest_messageSet "${lbl_execute_results_count_test} $mseCountAssert"
