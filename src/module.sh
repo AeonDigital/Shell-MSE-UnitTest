@@ -169,17 +169,17 @@ mse_utest_execute() {
 # Autotest for this module
 mse_utest_autotest() {
   # Load minimal dependencies
-  . "${MSE_UTEST_GLOBAL_MAIN_PATH}/src/utest/message/set.sh"
-  . "${MSE_UTEST_GLOBAL_MAIN_PATH}/src/utest/message/show.sh"
+  . "${MSE_UTEST_GLOBAL_MAIN_PATH}/src/message/set.sh"
+  . "${MSE_UTEST_GLOBAL_MAIN_PATH}/src/message/show.sh"
 
 
   . "${MSE_UTEST_GLOBAL_MAIN_PATH}/src/utest/is/equals.sh"
   . "${MSE_UTEST_GLOBAL_MAIN_PATH}/src/utest/is/not_equals.sh"
 
-  . "${MSE_UTEST_GLOBAL_MAIN_PATH}/src/utest/assert/control/can_assert.sh"
-  . "${MSE_UTEST_GLOBAL_MAIN_PATH}/src/utest/assert/control/end_fail.sh"
-  . "${MSE_UTEST_GLOBAL_MAIN_PATH}/src/utest/assert/control/end_success.sh"
-  . "${MSE_UTEST_GLOBAL_MAIN_PATH}/src/utest/assert/control/start.sh"
+  . "${MSE_UTEST_GLOBAL_MAIN_PATH}/src/utest/control/can_assert.sh"
+  . "${MSE_UTEST_GLOBAL_MAIN_PATH}/src/utest/control/end_fail.sh"
+  . "${MSE_UTEST_GLOBAL_MAIN_PATH}/src/utest/control/end_success.sh"
+  . "${MSE_UTEST_GLOBAL_MAIN_PATH}/src/utest/control/start.sh"
 
   . "${MSE_UTEST_GLOBAL_MAIN_PATH}/src/utest/assert/equals.sh"
   . "${MSE_UTEST_GLOBAL_MAIN_PATH}/src/utest/assert/not_equals.sh"

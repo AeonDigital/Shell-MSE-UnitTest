@@ -8,7 +8,12 @@
 # It should be performed immediately before starting any other assertion test.
 #
 # @return bool
-mse_utest_assert_control_start() {
-  ((mseCountAssert = mseCountAssert + 1))
-  ((mseInnerCountTest = mseInnerCountTest + 1))
+mse_utest_control_can_assert() {
+  local mseReturn="0"
+
+  if [ "${MSE_UTEST_STOP_TESTS}" == "0" ]; then
+    mseReturn="1"
+  fi
+
+  echo -n "${mseReturn}"
 }

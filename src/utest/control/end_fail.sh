@@ -6,7 +6,7 @@
 # Prints the failure message related to the same on the screen.
 #
 # @return string
-mse_utest_assert_control_end_fail() {
+mse_utest_control_end_fail() {
   ((testCountFailed = testCountFailed + 1))
 
   mse_utest_message_set "${mseInnerCountTest} ${lbl_assertResult_Fail}" "1"
