@@ -114,7 +114,7 @@ mse_utest_execute() {
     done
 
 
-    mse_utest_message_set "${lbl_execute_startUnitTests}" 1
+    mse_utest_message_set "${lbl_execute_startUnitTests}" "1"
     mse_utest_message_show
 
 
@@ -136,9 +136,9 @@ mse_utest_execute() {
 
         local testResult=""
         local testExpected=""
-        local mseInnerCountTest=0
+        local mseInnerCountTest="0"
 
-        ((mseCountTests=mseCountTests+1))
+        ((mseCountTests = mseCountTests + 1))
 
         mse_utest_message_set "" "1"
         mse_utest_message_set "::"
@@ -152,10 +152,10 @@ mse_utest_execute() {
 
     mse_utest_message_set "" "1"
     mse_utest_message_set "${lbl_execute_results}"
-    mse_utest_message_set "${lbl_execute_results_count_scri} $mseCountTests"
-    mse_utest_message_set "${lbl_execute_results_count_test} $mseCountAssert"
-    mse_utest_message_set "${lbl_execute_results_count_succ} $testCountSuccess"
-    mse_utest_message_set "${lbl_execute_results_count_fail} $testCountFailed"
+    mse_utest_message_set "${lbl_execute_results_count_scri} ${mseCountTests}"
+    mse_utest_message_set "${lbl_execute_results_count_test} ${mseCountAssert}"
+    mse_utest_message_set "${lbl_execute_results_count_succ} ${testCountSuccess}"
+    mse_utest_message_set "${lbl_execute_results_count_fail} ${testCountFailed}"
     mse_utest_message_set ""
     mse_utest_message_show
   fi
@@ -175,6 +175,12 @@ mse_utest_autotest() {
 
   . "${MSE_UTEST_GLOBAL_MAIN_PATH}/src/utest/is/equals.sh"
   . "${MSE_UTEST_GLOBAL_MAIN_PATH}/src/utest/is/not_equals.sh"
+
+  . "${MSE_UTEST_GLOBAL_MAIN_PATH}/src/utest/assert/control/can_assert.sh"
+  . "${MSE_UTEST_GLOBAL_MAIN_PATH}/src/utest/assert/control/end_fail.sh"
+  . "${MSE_UTEST_GLOBAL_MAIN_PATH}/src/utest/assert/control/end_success.sh"
+  . "${MSE_UTEST_GLOBAL_MAIN_PATH}/src/utest/assert/control/start.sh"
+
   . "${MSE_UTEST_GLOBAL_MAIN_PATH}/src/utest/assert/equals.sh"
   . "${MSE_UTEST_GLOBAL_MAIN_PATH}/src/utest/assert/not_equals.sh"
 
