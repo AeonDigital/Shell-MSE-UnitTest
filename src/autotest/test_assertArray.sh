@@ -1,75 +1,75 @@
-  testResult=$(mse_md_utest_assertArrays)
+  testResult=$(mse_utest_assert_arrays)
   testExpected="  1 Invalid type of arrays (\$1); Given \"\". Expected \"a\" or \"A\"."
-  mse_md_utest_assertEqual
+  mse_utest_assert_equals
 
 
   unset testResult
   unset testExpected
   testResult=""
   testExpected=""
-  testResult=$(mse_md_utest_assertArrays a)
+  testResult=$(mse_utest_assert_arrays a)
   testExpected="  2 The control variable \"testResult\" is not an array"
-  mse_md_utest_assertEqual
+  mse_utest_assert_equals
 
 
   unset testResult
   unset testExpected
   declare -a testResult
   testExpected=""
-  testResult=$(mse_md_utest_assertArrays a)
+  testResult=$(mse_utest_assert_arrays a)
   testExpected="  3 The control variable \"testExpected\" is not an array"
-  mse_md_utest_assertEqual
+  mse_utest_assert_equals
 
 
   unset testResult
   unset testExpected
   declare -a testResult=("one")
   declare -a testExpected=("one" "two")
-  testResult=$(mse_md_utest_assertArrays a)
+  testResult=$(mse_utest_assert_arrays a)
   testExpected="  4 The number of items in the \"testResult\" array does not match. Expected 2 but found 1"
-  mse_md_utest_assertEqual
+  mse_utest_assert_equals
 
 
   unset testResult
   unset testExpected
   declare -a testResult=("one")
   declare -a testExpected=("one" "two")
-  testResult=$(mse_md_utest_assertArrays A)
+  testResult=$(mse_utest_assert_arrays A)
   testExpected="  5 The control variable \"testResult\" is not an associative array"
-  mse_md_utest_assertEqual
+  mse_utest_assert_equals
 
 
   unset testResult
   unset testExpected
   declare -A testResult
   declare -a testExpected=("one" "two")
-  testResult=$(mse_md_utest_assertArrays A)
+  testResult=$(mse_utest_assert_arrays A)
   testExpected="  6 The control variable \"testExpected\" is not an associative array"
-  mse_md_utest_assertEqual
+  mse_utest_assert_equals
 
 
   unset testResult
   unset testExpected
   declare -a testResult=("one" "tree" "two")
   declare -a testExpected=("one" "two" "tree")
-  mse_md_utest_assertArrays a 0
+  mse_utest_assert_arrays a 0
 
 
   unset testResult
   unset testExpected
   declare -a testResult=("one" "tree" "two")
   declare -a testExpected=("one" "two" "tree")
-  testResult=$(mse_md_utest_assertArrays a 1)
+  testResult=$(mse_utest_assert_arrays a 1)
   testResult=$(echo ${testResult%%-*})
   testExpected="8 FAIL Result : one tree two Expected : one two tree"
-  mse_md_utest_assertEqual
+  mse_utest_assert_equals
 
 
   unset testResult
   unset testExpected
   declare -a testResult=("one" "two" "tree")
   declare -a testExpected=("one" "two" "tree")
-  mse_md_utest_assertEqual
+  mse_utest_assert_equals
 
 
   unset testResult
@@ -82,7 +82,7 @@
   testExpected["one"]="1"
   testExpected["two"]="2"
   testExpected["tree"]="3"
-  mse_md_utest_assertArrays A
+  mse_utest_assert_arrays A
 
 
   unset testResult
@@ -95,10 +95,10 @@
   testExpected["one"]="1"
   testExpected["two"]="2"
   testExpected["tree"]="3"
-  testResult=$(mse_md_utest_assertArrays A)
+  testResult=$(mse_utest_assert_arrays A)
   testResult=$(echo ${testResult%%-*})
   testExpected="11 FAIL Result : four=4 two=2 one=1 tree=3 two=2 one=1 Expected :"
-  mse_md_utest_assertEqual
+  mse_utest_assert_equals
 
 
   unset testResult
@@ -111,7 +111,7 @@
   testExpected["one"]="1"
   testExpected["two"]="2"
   testExpected["tree"]="3"
-  testResult=$(mse_md_utest_assertArrays A)
+  testResult=$(mse_utest_assert_arrays A)
   testResult=$(echo ${testResult%%-*})
   testExpected="12 FAIL Result : tree=33 two=2 one=1 tree=3 two=2 one=1 Expected :"
-  mse_md_utest_assertEqual
+  mse_utest_assert_equals
