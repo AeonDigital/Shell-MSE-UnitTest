@@ -16,6 +16,6 @@ mse_utest_control_end_fail() {
 
   if [ "${MSE_UTEST_STOP_ON_FIRST_FAIL}" == "1" ]; then
     MSE_UTEST_STOP_TESTS="1"
-    echo -e "\n\n${MSE_UTEST_LOG_MESSAGES_INDENT}:: STOPED ON FIRST FAIL ::"
+    echo -e "\n\n${MSE_UTEST_LOG_MESSAGES_INDENT}${lbl_assertResult_StopInFirstFail}"
   fi
 }

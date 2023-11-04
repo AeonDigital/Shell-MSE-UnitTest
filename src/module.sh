@@ -172,17 +172,21 @@ mse_utest_autotest() {
   . "${MSE_UTEST_GLOBAL_MAIN_PATH}/src/message/set.sh"
   . "${MSE_UTEST_GLOBAL_MAIN_PATH}/src/message/show.sh"
 
-
-  . "${MSE_UTEST_GLOBAL_MAIN_PATH}/src/utest/is/equals.sh"
-  . "${MSE_UTEST_GLOBAL_MAIN_PATH}/src/utest/is/not_equals.sh"
-
   . "${MSE_UTEST_GLOBAL_MAIN_PATH}/src/utest/control/can_assert.sh"
   . "${MSE_UTEST_GLOBAL_MAIN_PATH}/src/utest/control/end_fail.sh"
   . "${MSE_UTEST_GLOBAL_MAIN_PATH}/src/utest/control/end_success.sh"
   . "${MSE_UTEST_GLOBAL_MAIN_PATH}/src/utest/control/start.sh"
 
+  . "${MSE_UTEST_GLOBAL_MAIN_PATH}/src/utest/is/equals.sh"
+  . "${MSE_UTEST_GLOBAL_MAIN_PATH}/src/utest/is/not_equals.sh"
+
   . "${MSE_UTEST_GLOBAL_MAIN_PATH}/src/utest/assert/equals.sh"
   . "${MSE_UTEST_GLOBAL_MAIN_PATH}/src/utest/assert/not_equals.sh"
+
+
+  # Compare functions
+  . "${MSE_UTEST_GLOBAL_MAIN_PATH}/src/utest/compare/string.sh"
+  #. "${MSE_UTEST_GLOBAL_MAIN_PATH}/src/utest/assert/string.sh"
 
 
 

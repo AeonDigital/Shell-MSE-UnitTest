@@ -23,9 +23,6 @@ autotest_mse_utest_assert_equals() {
   MSE_UTEST_FUNCTIONS_TO_SRC["mse_utest_assert_equals"]="${MSE_UTEST_GLOBAL_MAIN_PATH}/src/utest/assert/equals.sh"
   MSE_UTEST_FUNCTIONS_TO_TEST["mse_utest_assert_equals"]="${MSE_UTEST_GLOBAL_MAIN_PATH}/src/autotest/utest/assert/equals.sh"
 }
-
-
-
 #
 # Not equals
 autotest_mse_utest_assert_not_equals() {
@@ -35,11 +32,21 @@ autotest_mse_utest_assert_not_equals() {
 
 
 
+#
+# Compare string
+autotest_mse_utest_compare_string() {
+  MSE_UTEST_FUNCTIONS_TO_SRC["mse_utest_compare_string"]="${MSE_UTEST_GLOBAL_MAIN_PATH}/src/utest/compare/string.sh"
+  MSE_UTEST_FUNCTIONS_TO_TEST["mse_utest_compare_string"]="${MSE_UTEST_GLOBAL_MAIN_PATH}/src/autotest/utest/compare/string.sh"
+}
+
+
+
 
 autotest_reset_control_data
 
 autotest_mse_utest_assert_equals
 autotest_mse_utest_assert_not_equals
+autotest_mse_utest_compare_string
 
 mse_utest_execute
 
