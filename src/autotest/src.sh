@@ -17,19 +17,33 @@ autotest_reset_control_data() {
 
 
 
-
-
-
+#
+# Equals
 autotest_mse_utest_assert_equals() {
-  autotest_reset_control_data
-
   MSE_UTEST_FUNCTIONS_TO_SRC["mse_utest_assert_equals"]="${MSE_UTEST_GLOBAL_MAIN_PATH}/src/utest/assert/equals.sh"
   MSE_UTEST_FUNCTIONS_TO_TEST["mse_utest_assert_equals"]="${MSE_UTEST_GLOBAL_MAIN_PATH}/src/autotest/utest/assert/equals.sh"
-
-
-  mse_utest_execute
 }
+
+
+
+#
+# Not equals
+autotest_mse_utest_assert_not_equals() {
+  MSE_UTEST_FUNCTIONS_TO_SRC["mse_utest_assert_not_equals"]="${MSE_UTEST_GLOBAL_MAIN_PATH}/src/utest/assert/not_equals.sh"
+  MSE_UTEST_FUNCTIONS_TO_TEST["mse_utest_assert_not_equals"]="${MSE_UTEST_GLOBAL_MAIN_PATH}/src/autotest/utest/assert/not_equals.sh"
+}
+
+
+
+
+autotest_reset_control_data
+
 autotest_mse_utest_assert_equals
+autotest_mse_utest_assert_not_equals
+
+mse_utest_execute
+
+
 # mseAutotestAssertName=""
 # test_autotest_assert() {
 #   declare -a mseMsg=()
