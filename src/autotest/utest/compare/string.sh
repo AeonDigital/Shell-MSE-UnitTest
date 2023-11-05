@@ -94,7 +94,7 @@ test_mse_utest_compare_string() {
 
 
   testResult="${mseCompareArrResult[2]}"
-  testExpected="${mseFakeExpected}"
+  testExpected=$(echo -e "\n${mseFakeExpected}")
 
   mse_utest_assert_equals
 
@@ -120,7 +120,7 @@ test_mse_utest_compare_string() {
 
 
   testResult="${mseCompareArrResult[1]}"
-  testExpected=$(echo -e "\n${mseFakeResult}\n...........................^")
+  testExpected=$(echo -e "\n${mseFakeResult}\n...........................^ Expected char: ','; returned : '.'")
 
   mse_utest_assert_equals
 

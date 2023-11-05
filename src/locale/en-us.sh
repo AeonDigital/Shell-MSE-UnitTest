@@ -66,6 +66,7 @@ lbl_assertResult_StopInFirstFail=":: STOPED ON FIRST FAIL ::"
 
 lbl_compareString_valueHasAnInvalidChar="The value passed in '[[VAR]]' has an invalid character: '[[CHAR]]'"
 lbl_assertStringDivergence_charNumberDifferent="Different number of characters. Expected [[COUNT_EXPECTED]] but counted [[COUNT_RESULT]]."
+lbl_assertStringDivergence_charDifferent="Expected char: '[[C1]]'; returned : '[[C2]]'"
 
 # lbl_assertArray_invalidTypeArrays="Invalid type of arrays (\$1); Given \"[[ARRAY_TYPE]]\". Expected \"a\" or \"A\"."
 # lbl_assertArray_resultIsNotAnArray="The control variable \"testResult\" is not an array"

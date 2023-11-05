@@ -5,13 +5,32 @@
 #
 # Prints the failure message related to the same on the screen.
 #
+# @param string $1
+# Optional
+# Value thats will replace the original 'testResult'.
+#
+# @param string $2
+# Optional
+# Value thats will replace the original 'testExpected'.
+#
 # @return string
 mse_utest_control_end_fail() {
   ((testCountFailed = testCountFailed + 1))
 
+  local mseUseResult="${testResult}"
+  local mseUseExpected="${testExpected}"
+
+  if [ "${1}" != "" ] && [ "${1}" != "${testResult}" ]; then
+    mseUseResult="${1}"
+  fi
+  if [ "${2}" != "" ] && [ "${2}" != "${testExpected}" ]; then
+    mseUseExpected="${2}"
+  fi
+
+
   mse_utest_message_set "${mseInnerCountTest} ${lbl_assertResult_Fail}" "1"
-  mse_utest_message_set "${lbl_assertResult_Result} ${testResult}"
-  mse_utest_message_set "${lbl_assertResult_Expect} ${testExpected}"
+  mse_utest_message_set "${lbl_assertResult_Result} ${mseUseResult}"
+  mse_utest_message_set "${lbl_assertResult_Expect} ${mseUseExpected}"
   mse_utest_message_show
 
   if [ "${MSE_UTEST_STOP_ON_FIRST_FAIL}" == "1" ]; then

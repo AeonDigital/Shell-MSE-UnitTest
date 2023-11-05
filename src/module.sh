@@ -189,7 +189,7 @@ mse_utest_autotest() {
 
 
   # Assert functions
-  #. "${MSE_UTEST_GLOBAL_MAIN_PATH}/src/utest/assert/string.sh"
+  . "${MSE_UTEST_GLOBAL_MAIN_PATH}/src/utest/assert/string.sh"
 
 
 

@@ -72,6 +72,7 @@ mse_utest_compare_string() {
         local rChar
         local eChar
         local mseMsg=""
+        local mseCharData=""
 
         for (( mseI=0; mseI < mseCompareExpectedLength; mseI++ )); do
           rChar="${mseCompareResult:mseI:1}"
@@ -82,11 +83,28 @@ mse_utest_compare_string() {
           else
             mseIsOk="0"
             mseMsg+="^"
+
+            local mseUseRChar="${rChar}"
+            local mseUseEChar="${eChar}"
+            if [[ ! "${rChar}" =~ [[:print:]] ]]; then
+              mseUseRChar="char("
+              mseUseRChar+=$(printf "%d" "'${rChar}")
+              mseUseRChar+=")"
+            fi
+            if [[ ! "${eChar}" =~ [[:print:]] ]]; then
+              mseUseEChar="char("
+              mseUseEChar+=$(printf "%d" "'${eChar}")
+              mseUseEChar+=")"
+            fi
+
+            mseCharData=" ${lbl_assertStringDivergence_charDifferent}"
+            mseCharData="${mseCharData/\[\[C1\]\]/${mseUseEChar}}"
+            mseCharData="${mseCharData/\[\[C2\]\]/${mseUseRChar}}"
             break
           fi
         done
 
-        mseResultInfo+="${mseMsg}"
+        mseResultInfo+="${mseMsg}${mseCharData}"
         mseExpectedInfo+="${mseMsg}"
       fi
     fi
@@ -98,9 +116,7 @@ mse_utest_compare_string() {
   local mseStrReturnExpected=""
   if [ "${mseIsOk}" == "0" ]; then
     mseStrReturnResult+="\n"
-    if [ "${mseExpectedInfo}" != "" ]; then
-      mseStrReturnExpected+="\n"
-    fi
+    mseStrReturnExpected+="\n"
   fi
   mseStrReturnResult+="${mseCompareResult}"
   mseStrReturnExpected+="${mseCompareExpected}"
