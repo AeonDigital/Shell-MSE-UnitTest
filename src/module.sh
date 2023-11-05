@@ -180,6 +180,8 @@ mse_utest_autotest() {
   . "${MSE_UTEST_GLOBAL_MAIN_PATH}/src/utest/control/end_success.sh"
   . "${MSE_UTEST_GLOBAL_MAIN_PATH}/src/utest/control/start.sh"
 
+
+  # Basic assertations
   . "${MSE_UTEST_GLOBAL_MAIN_PATH}/src/utest/is/equals.sh"
   . "${MSE_UTEST_GLOBAL_MAIN_PATH}/src/utest/is/not_equals.sh"
 
