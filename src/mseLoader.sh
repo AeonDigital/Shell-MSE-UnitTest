@@ -120,11 +120,13 @@ checkUTestDataBeforeExecute() {
 #
 # @return void
 loadUtestDependencies() {
+  local mseDir=$(getRealPathToCurrentDirectory)
+
   local mseTmpFile=""
   local mseTmpDirs=("functions" "message" "utest")
 
   for mseTmpDir in "functions" "message" "utest"; do
-    for mseTmpFile in $(find "${MSE_UTEST_GLOBAL_MAIN_PATH}/src/${mseTmpDir}" -type f -path "*.sh"); do
+    for mseTmpFile in $(find "${mseDir}/${mseTmpDir}" -type f -path "*.sh"); do
       . "${mseTmpFile}"
     done
   done

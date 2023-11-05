@@ -105,6 +105,8 @@ mse_utest_execute() {
 #
 # Autotest for this module
 mse_utest_autotest() {
+  local mseDir=$(getRealPathToCurrentDirectory)
+
   #
   # Changing the "LC_CTYPE" variable below changes how character counts are done in a string.
   # - Use "" to count the number of chars in a string (multibyte safe)
@@ -112,7 +114,7 @@ mse_utest_autotest() {
   local oLC_CTYPE="${LC_CTYPE}"
   LC_CTYPE=""
 
-  . "${MSE_UTEST_GLOBAL_MAIN_PATH}/src/autotest/src.sh"
+  . "${mseDir}/autotest/src.sh"
 
   LC_CTYPE="${oLC_CTYPE}"
 }

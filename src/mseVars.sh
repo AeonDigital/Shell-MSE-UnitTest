@@ -6,10 +6,10 @@
 
 
 #
-# [string] MSE_UTEST_GLOBAL_MAIN_PATH
+# [string] MSE_GLOBAL_UTEST_MAIN_PATH
 # Stores the main path where the project is installed.
-if [ -z ${MSE_UTEST_GLOBAL_MAIN_PATH+x} ]; then
-  declare -g MSE_UTEST_GLOBAL_MAIN_PATH=$(spath=$(getRealPathToCurrentDirectory); echo "${spath%/*}")
+if [ -z ${MSE_GLOBAL_UTEST_MAIN_PATH+x} ]; then
+  declare -g MSE_GLOBAL_UTEST_MAIN_PATH=$(spath=$(getRealPathToCurrentDirectory); echo "${spath%/*}")
 fi
 #
 # [string] MSE_UTEST_USE_LOCALE
