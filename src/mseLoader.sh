@@ -35,7 +35,7 @@ getRealPathToCurrentScript() {
     fi
   done
 
-  if [ -f ${mseRealPath} ] || [ -d ${mseRealPath} ]; then
+  if [ -f "${mseRealPath}" ] || [ -d "${mseRealPath}" ]; then
     echo -n "${mseRealPath}"
   else
     echo -n ""
