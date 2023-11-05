@@ -53,6 +53,12 @@ autotest_mse_utest_assert_string() {
   MSE_UTEST_FUNCTIONS_TO_SRC["mse_utest_assert_string"]="${MSE_UTEST_GLOBAL_MAIN_PATH}/src/utest/assert/string.sh"
   MSE_UTEST_FUNCTIONS_TO_TEST["mse_utest_assert_string"]="${MSE_UTEST_GLOBAL_MAIN_PATH}/src/autotest/utest/assert/string.sh"
 }
+#
+# Assert array
+autotest_mse_utest_assert_array() {
+  MSE_UTEST_FUNCTIONS_TO_SRC["mse_utest_assert_array"]="${MSE_UTEST_GLOBAL_MAIN_PATH}/src/utest/assert/array.sh"
+  MSE_UTEST_FUNCTIONS_TO_TEST["mse_utest_assert_array"]="${MSE_UTEST_GLOBAL_MAIN_PATH}/src/autotest/utest/assert/array.sh"
+}
 
 
 
@@ -63,5 +69,6 @@ autotest_mse_utest_assert_not_equals
 autotest_mse_utest_compare_string
 autotest_mse_utest_compare_array
 autotest_mse_utest_assert_string
+autotest_mse_utest_assert_array
 
 mse_utest_execute
