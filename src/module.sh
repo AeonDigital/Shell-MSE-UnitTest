@@ -169,6 +169,9 @@ mse_utest_execute() {
 # Autotest for this module
 mse_utest_autotest() {
   # Load minimal dependencies
+  . "${MSE_UTEST_GLOBAL_MAIN_PATH}/src/functions/str/trim.sh"
+  . "${MSE_UTEST_GLOBAL_MAIN_PATH}/src/functions/str/pad.sh"
+
   . "${MSE_UTEST_GLOBAL_MAIN_PATH}/src/message/set.sh"
   . "${MSE_UTEST_GLOBAL_MAIN_PATH}/src/message/show.sh"
 
@@ -186,6 +189,7 @@ mse_utest_autotest() {
 
   # Compare functions
   . "${MSE_UTEST_GLOBAL_MAIN_PATH}/src/utest/compare/string.sh"
+  . "${MSE_UTEST_GLOBAL_MAIN_PATH}/src/utest/compare/array.sh"
 
 
   # Assert functions

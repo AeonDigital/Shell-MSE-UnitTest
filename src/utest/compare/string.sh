@@ -6,10 +6,10 @@
 # Compares two strings and fills the indicated array with the result
 # of the comparison.
 #
-# Strings provided for comparison will be truncated at the
-# first '\n' character found.
+# The presence of '\n' character will cause an error in the check.
 #
 # Multiline strings will cause the test to fail.
+#
 #
 # @param string $1
 # First string. Value resulting from processing.

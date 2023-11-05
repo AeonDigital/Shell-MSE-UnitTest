@@ -38,6 +38,14 @@ autotest_mse_utest_compare_string() {
   MSE_UTEST_FUNCTIONS_TO_SRC["mse_utest_compare_string"]="${MSE_UTEST_GLOBAL_MAIN_PATH}/src/utest/compare/string.sh"
   MSE_UTEST_FUNCTIONS_TO_TEST["mse_utest_compare_string"]="${MSE_UTEST_GLOBAL_MAIN_PATH}/src/autotest/utest/compare/string.sh"
 }
+#
+# Compare array
+autotest_mse_utest_compare_array() {
+  MSE_UTEST_FUNCTIONS_TO_SRC["mse_utest_compare_array"]="${MSE_UTEST_GLOBAL_MAIN_PATH}/src/utest/compare/array.sh"
+  MSE_UTEST_FUNCTIONS_TO_TEST["mse_utest_compare_array"]="${MSE_UTEST_GLOBAL_MAIN_PATH}/src/autotest/utest/compare/array.sh"
+}
+
+
 
 #
 # Assert string
@@ -56,58 +64,3 @@ autotest_mse_utest_compare_string
 autotest_mse_utest_assert_string
 
 mse_utest_execute
-
-
-# mseAutotestAssertName=""
-# test_autotest_assert() {
-#   declare -a mseMsg=()
-
-#   if [ "${mseAutotestAssertName}" != "${mseAssertName}" ]; then
-#     mseAutotestAssertName="${mseAssertName}"
-#     mseMsg+=("ASSERT: ${mseAssertName}")
-#   fi
-
-#   mseMsg+=()
-#   if [ "${mseAssertResult}" ]
-# }
-
-
-
-
-# #
-# # Compare Strings
-# test_mse_utest_compare_strings() {
-#   . "${utestDir}/is/equals.sh"
-#   . "${utestDir}/compare/strings.sh"
-#   local mseAssertName="compare_string"
-
-
-
-#   local mseFakeResult="This is a simple test and must pass"
-#   local mseFakeExpected="This is a simple test and must pass"
-
-#   local mseAssertResult=$(mse_utest_compare_strings "${mseFakeResult}" "${mseFakeExpected}")
-#   local mseAssertResultExpected=""
-
-#   test_autotest_assert
-#   #if [ "${mseAssertResult}" == "" ]; then
-#   #  mseMsg+=""
-#   #fi
-
-
-#   echo "${mseFakeExpected}"
-#   echo "${mseFakeResult}"
-#   echo "${mseAssertResult}"
-# }
-# test_mse_utest_compare_strings
-
-
-
-
-
-
-
-
-
-
-
