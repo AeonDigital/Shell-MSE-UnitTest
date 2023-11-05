@@ -54,16 +54,83 @@ getRealPathToCurrentDirectory() {
 
 
 
+#
+# Performs a series of checks to ensure that the tests are working correctly.
+checkUTestDataBeforeExecute() {
+  local mseReturn="0"
+  local mseMsg=""
+
+
+  if [ "${#MSE_UTEST_FUNCTIONS_TO_SRC[@]}" == "0" ]; then
+    mseReturn="1"
+    mse_utest_message_set "${lbl_check_functionsScriptsNotDefined}" "1"
+  else
+    if [ "${#MSE_UTEST_FUNCTIONS_TO_TEST[@]}" == "0" ]; then
+      mseReturn="1"
+      mse_utest_message_set "${lbl_check_testScriptNotDefined}" "1"
+    else
+
+      if [ "${#MSE_UTEST_FUNCTIONS_TO_SRC[@]}" != "${#MSE_UTEST_FUNCTIONS_TO_TEST[@]}" ]; then
+        mseReturn="1"
+        mse_utest_message_set "${lbl_check_testsAndFunctionsCountDoesNotMatch}" "1"
+      else
+        local mseFunctionName
+
+        for mseFunctionName in "${!MSE_UTEST_FUNCTIONS_TO_TEST[@]}"; do
+          if [ "${mseReturn}" == "0" ]; then
+            if [ -z "${MSE_UTEST_FUNCTIONS_TO_SRC[$mseFunctionName]+x}" ]; then
+              mseReturn="1"
+
+              mseMsg="${lbl_check_testWithoutFunction/\[\[FUNCTION\]\]/${mseFunctionName}}"
+              mse_utest_message_set "${mseMsg}" "1"
+            else
+              if [ ! -f "${MSE_UTEST_FUNCTIONS_TO_TEST[${mseFunctionName}]}" ]; then
+                mseReturn="1"
+
+                mseMsg="${lbl_check_fileDoesNotExists/\[\[FILE\]\]/${MSE_UTEST_FUNCTIONS_TO_TEST[${mseFunctionName}]}}"
+                mse_utest_message_set "${mseMsg}" "1"
+              else
+                if [ ! -f "${MSE_UTEST_FUNCTIONS_TO_SRC[${mseFunctionName}]}" ]; then
+                  mseReturn="1"
+
+                  mseMsg="${lbl_check_fileDoesNotExists/\[\[FILE\]\]/${MSE_UTEST_FUNCTIONS_TO_SRC[${mseFunctionName}]}}"
+                  mse_utest_message_set "${mseMsg}" "1"
+                fi
+              fi
+            fi
+          fi
+        done
+      fi
+    fi
+  fi
+
+
+
+  if [ "${#MSE_UTEST_LOG_MESSAGES[@]}" != "0" ]; then
+    mse_utest_message_show
+  fi
+
+  return ${mseReturn}
+}
+
+
+
+#
+# Loads the scripts needed to start testing.
+#
+# @return void
+loadUtestDependencies() {
+  local mseTmpFile=""
+  local mseTmpDirs=("functions" "message" "utest")
+
+  for mseTmpDir in "functions" "message" "utest"; do
+    for mseTmpFile in $(find "${MSE_UTEST_GLOBAL_MAIN_PATH}/src/${mseTmpDir}" -type f -path "*.sh"); do
+      . "${mseTmpFile}"
+    done
+  done
+}
 
 
 
 . "${BASH_SOURCE%/*}/mseVars.sh"
 . "${BASH_SOURCE%/*}/locale/${MSE_UTEST_USE_LOCALE}.sh"
-
-if [ ${1} == "" ] || [ "${1}" != "autotest" ]; then
-  mseTmpFile=""
-  for mseTmpFile in $(find "${MSE_UTEST_GLOBAL_MAIN_PATH}/src/utest" -type f -path "*.sh"); do
-    . ${mseTmpFile}
-  done
-  unset mseTmpFile
-fi
