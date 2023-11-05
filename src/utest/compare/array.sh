@@ -126,8 +126,8 @@ mse_utest_compare_array() {
       local countMatch="0"
 
       for mseI in "${!utestExpected[@]}"; do
-        utestCompareArrResult[${mseI}]=$(mse_utest_str_trim "${utestResult[${mseI}]}")
-        utestCompareArrExpected[${mseI}]=$(mse_utest_str_trim "${utestExpected[${mseI}]}")
+        utestCompareArrResult[${mseI}]=$(echo -e "${utestResult[${mseI}]}")
+        utestCompareArrExpected[${mseI}]=$(echo -e "${utestExpected[${mseI}]}")
       done
 
 
@@ -262,8 +262,8 @@ mse_utest_compare_array() {
             mseElemSepar="=>"
           fi
 
-          mseStrReturnReportLines=$(mse_utest_str_trim "${mseCompareString[1]}")
-          mseStrExpectedReportLines=$(mse_utest_str_trim "${mseCompareString[2]}")
+          mseStrReturnReportLines=$(echo -e "${mseCompareString[1]}")
+          mseStrExpectedReportLines=$(echo -e "${mseCompareString[2]}")
 
 
           msePrefixLine="${mseElemMatch} ${mseElemIndex} ${mseElemSepar} "
@@ -273,9 +273,11 @@ mse_utest_compare_array() {
           mseIsFirstLine="1"
           while read -r mseLineRaw || [ -n "${mseLineRaw}" ]; do
             if [ "${mseIsFirstLine}" == "1" ]; then
-              mseUseLine=$(mse_utest_str_pad "${mseLineRaw}" " " "${mseMaxResultLength}" "r")
-              mseArrReturnResultReport+=("${msePrefixLine}${mseUseLine} |")
-              mseIsFirstLine="0"
+              if [ "${mseLineRaw}" != "" ]; then
+                mseUseLine=$(mse_utest_str_pad "${mseLineRaw}" " " "${mseMaxResultLength}" "r")
+                mseArrReturnResultReport+=("${msePrefixLine}${mseUseLine} |")
+                mseIsFirstLine="0"
+              fi
             else
               mseArrReturnResultReport+=("${mseIndentLine}${mseLineRaw}")
             fi
@@ -285,9 +287,11 @@ mse_utest_compare_array() {
           mseIsFirstLine="1"
           while read -r mseLineRaw || [ -n "${mseLineRaw}" ]; do
             if [ "${mseIsFirstLine}" == "1" ]; then
-              mseUseLine=$(mse_utest_str_pad "${mseLineRaw}" " " "${mseMaxResultLength}" "r")
-              mseArrReturnExpectedReport+=("${msePrefixLine}${mseUseLine} |")
-              mseIsFirstLine="0"
+              if [ "${mseLineRaw}" != "" ]; then
+                mseUseLine=$(mse_utest_str_pad "${mseLineRaw}" " " "${mseMaxResultLength}" "r")
+                mseArrReturnExpectedReport+=("${msePrefixLine}${mseUseLine} |")
+                mseIsFirstLine="0"
+              fi
             else
               mseArrReturnExpectedReport+=("${mseIndentLine}${mseLineRaw}")
             fi

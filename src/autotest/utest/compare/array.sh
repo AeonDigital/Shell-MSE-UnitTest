@@ -24,9 +24,9 @@ test_mse_utest_compare_array() {
 
   mseTmpTestMsg=""
   mseArrFakeResult=("one" "two")
-  mseCompareArrResult=("one" "two" "tree")
+  mseArrFakeExpected=("one" "two" "tree")
 
-  mse_utest_compare_array "mseArrFakeResult" "mseCompareArrResult" "mseCompareArrResult" "a"
+  mse_utest_compare_array "mseArrFakeResult" "mseArrFakeExpected" "mseCompareArrResult" "a"
 
   testResult="${#mseCompareArrResult[@]}"
   testExpected="3"
@@ -61,9 +61,9 @@ test_mse_utest_compare_array() {
 
   mseTmpTestMsg=""
   mseArrFakeResult=("first line equal" "second line equal" "Third line equal" "Fourth line is ok")
-  mseCompareArrResult=("first line equal" "second line equal" "Third line equal" "Fourth line is ok")
+  mseArrFakeExpected=("first line equal" "second line equal" "Third line equal" "Fourth line is ok")
 
-  mse_utest_compare_array "mseArrFakeResult" "mseCompareArrResult" "mseCompareArrResult" "a"
+  mse_utest_compare_array "mseArrFakeResult" "mseArrFakeExpected" "mseCompareArrResult" "a"
 
   testResult="${#mseCompareArrResult[@]}"
   testExpected="3"
@@ -94,9 +94,9 @@ test_mse_utest_compare_array() {
 
   mseTmpTestMsg=""
   mseArrFakeResult=("first line equal" "second line equal" "Third line is not equal" "Fourth line is ok")
-  mseCompareArrResult=("first line equal" "second line equal" "Third line equal" "Fourth line is ok")
+  mseArrFakeExpected=("first line equal" "second line equal" "Third line equal" "Fourth line is ok")
 
-  mse_utest_compare_array "mseArrFakeResult" "mseCompareArrResult" "mseCompareArrResult" "a"
+  mse_utest_compare_array "mseArrFakeResult" "mseArrFakeExpected" "mseCompareArrResult" "a"
 
   testResult="${#mseCompareArrResult[@]}"
   testExpected="3"
@@ -138,6 +138,62 @@ test_mse_utest_compare_array() {
   mseTmpTestMsg+="         ...........^\n"
   mseTmpTestMsg+="[v] 3 :: Fourth line is ok       |\n"
   mseTmpTestMsg+=">>>"
+  testResult="${mseCompareArrResult[2]}"
+  testExpected=$(echo -e "${mseTmpTestMsg}")
+
+  mse_utest_assert_equals
+
+
+
+
+
+  mseTmpTestMsg=""
+  mseArrFakeResult=("first line equal" "second line equal" "Third line equal   " "Fourth line is ok")
+  mseArrFakeExpected=("first line equal" "second line equal" "Third line equal" "Fourth line is ok")
+
+  mse_utest_compare_array "mseArrFakeResult" "mseArrFakeExpected" "mseCompareArrResult" "a"
+
+  testResult="${#mseCompareArrResult[@]}"
+  testExpected="3"
+
+  mse_utest_assert_equals
+
+
+  testResult="${mseCompareArrResult[0]}"
+  testExpected="0"
+
+  mse_utest_assert_equals
+
+
+
+  mseTmpTestMsg="\n"
+  mseTmpTestMsg+=":: RESULT ARRAY [ rows: 4 | cols: 19 ]\n"
+  mseTmpTestMsg+="<<<\n"
+  mseTmpTestMsg+="[v] 0 :: first line equal    |\n"
+  mseTmpTestMsg+="[v] 1 :: second line equal   |\n"
+  mseTmpTestMsg+="[x] 2 :: Third line equal    |\n"
+  mseTmpTestMsg+="         ................^ Expected char: 'char(0)'; returned : ' '\n"
+  mseTmpTestMsg+="[v] 3 :: Fourth line is ok   |\n"
+  mseTmpTestMsg+=">>>"
+
+  testResult="${mseCompareArrResult[1]}"
+  testExpected=$(echo -e "${mseTmpTestMsg}")
+
+  mse_utest_assert_equals
+
+
+
+
+  mseTmpTestMsg="\n"
+  mseTmpTestMsg+=":: EXPECTED ARRAY [ rows: 4 | cols: 17 ]\n"
+  mseTmpTestMsg+="<<<\n"
+  mseTmpTestMsg+="[v] 0 :: first line equal    |\n"
+  mseTmpTestMsg+="[v] 1 :: second line equal   |\n"
+  mseTmpTestMsg+="[x] 2 :: Third line equal    |\n"
+  mseTmpTestMsg+="         ................^\n"
+  mseTmpTestMsg+="[v] 3 :: Fourth line is ok   |\n"
+  mseTmpTestMsg+=">>>"
+
   testResult="${mseCompareArrResult[2]}"
   testExpected=$(echo -e "${mseTmpTestMsg}")
 

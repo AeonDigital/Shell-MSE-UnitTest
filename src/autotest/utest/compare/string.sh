@@ -97,4 +97,36 @@ test_mse_utest_compare_string() {
   testExpected=$(echo -e "\n${mseFakeExpected}\n...........................^")
 
   mse_utest_assert_equals
+
+
+
+
+
+  local mseFakeResult="Third line equal   "
+  local mseFakeExpected="Third line equal"
+
+  mse_utest_compare_string "${mseFakeResult}" "${mseFakeExpected}" "mseCompareArrResult"
+
+  testResult="${#mseCompareArrResult[@]}"
+  testExpected="3"
+
+  mse_utest_assert_equals
+
+
+  testResult="${mseCompareArrResult[0]}"
+  testExpected="0"
+
+  mse_utest_assert_equals
+
+
+  testResult="${mseCompareArrResult[1]}"
+  testExpected=$(echo -e "\n${mseFakeResult}\n................^ Expected char: 'char(0)'; returned : ' '")
+
+  mse_utest_assert_equals
+
+
+  testResult="${mseCompareArrResult[2]}"
+  testExpected=$(echo -e "\n${mseFakeExpected}\n................^")
+
+  mse_utest_assert_equals
 }

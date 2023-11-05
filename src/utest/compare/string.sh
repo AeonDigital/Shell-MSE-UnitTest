@@ -70,7 +70,7 @@ mse_utest_compare_string() {
     local mseMsg=""
     local mseCharData=""
 
-    for (( mseI=0; mseI < mseCompareExpectedLength; mseI++ )); do
+    for (( mseI=0; mseI < mseUseLength; mseI++ )); do
       rChar="${mseCompareResult:mseI:1}"
       eChar="${mseCompareExpected:mseI:1}"
 
