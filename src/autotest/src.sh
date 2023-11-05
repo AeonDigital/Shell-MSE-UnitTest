@@ -65,17 +65,3 @@ autotest_mse_utest_assert_string_multiline() {
   MSE_UTEST_FUNCTIONS_TO_SRC["mse_utest_assert_string_multiline"]="${MSE_GLOBAL_UTEST_MAIN_PATH}/src/utest/assert/string_multiline.sh"
   MSE_UTEST_FUNCTIONS_TO_TEST["mse_utest_assert_string_multiline"]="${MSE_GLOBAL_UTEST_MAIN_PATH}/src/autotest/utest/assert/string_multiline.sh"
 }
-
-
-
-autotest_reset_control_data
-
-autotest_mse_utest_assert_equals
-autotest_mse_utest_assert_not_equals
-autotest_mse_utest_compare_string
-autotest_mse_utest_compare_array
-autotest_mse_utest_assert_string
-autotest_mse_utest_assert_array
-autotest_mse_utest_assert_string_multiline
-
-mse_utest_execute

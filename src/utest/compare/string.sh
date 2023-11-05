@@ -6,9 +6,10 @@
 # Compares two strings and fills the indicated array with the result
 # of the comparison.
 #
-# The presence of '\n' character will cause an error in the check.
-#
-# Multiline strings will cause the test to fail.
+# You can't make this comparison if the string has an '\n' character
+# in the middle of its string.
+# The '\n' character at the end of the string is acceptable but will
+# not be taken into account to compare its equality
 #
 #
 # @param string $1
@@ -31,8 +32,8 @@ mse_utest_compare_string() {
   local mseResultInfo=""
   local mseExpectedInfo=""
 
-  local mseCompareResult=$(mse_utest_str_trim "${1}")
-  local mseCompareExpected=$(mse_utest_str_trim "${2}")
+  local mseCompareResult=$(echo -e "${1}")
+  local mseCompareExpected=$(echo -e "${2}")
   declare -n mseArrReturn="${3}"
 
 

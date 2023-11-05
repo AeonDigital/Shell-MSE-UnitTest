@@ -38,8 +38,8 @@ test_mse_utest_compare_string() {
 
 
 
-  local mseFakeResult="This comparison should be successful. The return will be an empty string."
-  local mseFakeExpected="This comparison should be successful. The return will be an empty string."
+  local mseFakeResult="This comparison should be successful. \n"
+  local mseFakeExpected="This comparison should be successful. "
 
   mse_utest_compare_string "${mseFakeResult}" "${mseFakeExpected}" "mseCompareArrResult"
 
@@ -56,13 +56,13 @@ test_mse_utest_compare_string() {
 
 
   testResult="${mseCompareArrResult[1]}"
-  testExpected="${mseFakeResult}"
+  testExpected=$(echo -e "${mseFakeResult}")
 
   mse_utest_assert_equals
 
 
   testResult="${mseCompareArrResult[2]}"
-  testExpected="${mseFakeExpected}"
+  testExpected=$(echo -e "${mseFakeExpected}")
 
   mse_utest_assert_equals
 

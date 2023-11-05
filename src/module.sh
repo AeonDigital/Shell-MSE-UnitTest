@@ -115,6 +115,17 @@ mse_utest_autotest() {
   LC_CTYPE=""
 
   . "${mseDir}/autotest/src.sh"
+  autotest_reset_control_data
+
+  autotest_mse_utest_assert_equals
+  autotest_mse_utest_assert_not_equals
+  autotest_mse_utest_compare_string
+  autotest_mse_utest_compare_array
+  autotest_mse_utest_assert_string
+  autotest_mse_utest_assert_array
+  autotest_mse_utest_assert_string_multiline
+
+  mse_utest_execute "${1}" "${2}"
 
   LC_CTYPE="${oLC_CTYPE}"
 }
@@ -122,5 +133,5 @@ mse_utest_autotest() {
 
 
 if [ "${1}" == "autotest" ]; then
-  mse_utest_autotest
+  mse_utest_autotest "${2}" "${3}"
 fi
