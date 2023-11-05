@@ -59,6 +59,12 @@ autotest_mse_utest_assert_array() {
   MSE_UTEST_FUNCTIONS_TO_SRC["mse_utest_assert_array"]="${MSE_UTEST_GLOBAL_MAIN_PATH}/src/utest/assert/array.sh"
   MSE_UTEST_FUNCTIONS_TO_TEST["mse_utest_assert_array"]="${MSE_UTEST_GLOBAL_MAIN_PATH}/src/autotest/utest/assert/array.sh"
 }
+#
+# Assert array
+autotest_mse_utest_assert_string_multiline() {
+  MSE_UTEST_FUNCTIONS_TO_SRC["mse_utest_assert_string_multiline"]="${MSE_UTEST_GLOBAL_MAIN_PATH}/src/utest/assert/string_multiline.sh"
+  MSE_UTEST_FUNCTIONS_TO_TEST["mse_utest_assert_string_multiline"]="${MSE_UTEST_GLOBAL_MAIN_PATH}/src/autotest/utest/assert/string_multiline.sh"
+}
 
 
 
@@ -70,5 +76,6 @@ autotest_mse_utest_compare_string
 autotest_mse_utest_compare_array
 autotest_mse_utest_assert_string
 autotest_mse_utest_assert_array
+autotest_mse_utest_assert_string_multiline
 
 mse_utest_execute
