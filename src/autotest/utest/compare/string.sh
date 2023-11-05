@@ -24,13 +24,13 @@ test_mse_utest_compare_string() {
 
 
   testResult="${mseCompareArrResult[1]}"
-  testExpected="The value passed in 'result' has an invalid character: 'NEW_LINE'"
+  testExpected=$(echo -e "\n${mseFakeResult}\nThe value passed in 'result' has an invalid character: 'NEW_LINE'")
 
   mse_utest_assert_equals
 
 
   testResult="${mseCompareArrResult[2]}"
-  testExpected="The value passed in 'expected' has an invalid character: 'NEW_LINE'"
+  testExpected=$(echo -e "\n${mseFakeExpected}\nThe value passed in 'expected' has an invalid character: 'NEW_LINE'")
 
   mse_utest_assert_equals
 
@@ -56,13 +56,13 @@ test_mse_utest_compare_string() {
 
 
   testResult="${mseCompareArrResult[1]}"
-  testExpected=""
+  testExpected="${mseFakeResult}"
 
   mse_utest_assert_equals
 
 
   testResult="${mseCompareArrResult[2]}"
-  testExpected=""
+  testExpected="${mseFakeExpected}"
 
   mse_utest_assert_equals
 
@@ -88,13 +88,13 @@ test_mse_utest_compare_string() {
 
 
   testResult="${mseCompareArrResult[1]}"
-  testExpected="Different number of characters. Expected 69 but counted 68."
+  testExpected=$(echo -e "\n${mseFakeResult}\nDifferent number of characters. Expected 69 but counted 68.")
 
   mse_utest_assert_equals
 
 
   testResult="${mseCompareArrResult[2]}"
-  testExpected=""
+  testExpected="${mseFakeExpected}"
 
   mse_utest_assert_equals
 

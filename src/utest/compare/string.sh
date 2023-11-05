@@ -28,9 +28,10 @@
 mse_utest_compare_string() {
   local mseIsOk="1"
   local mseMsg=""
-  local mseResultData=""
-  local mseExpectedData=""
+  local mseResultInfo=""
+  local mseExpectedInfo=""
 
+  local mseCompareChars="0"
   local mseCompareResult=$(echo -e "${1}")
   local mseCompareExpected=$(echo -e "${2}")
   declare -n mseArrReturn="${3}"
@@ -41,19 +42,19 @@ mse_utest_compare_string() {
     mseMsg="${lbl_compareString_valueHasAnInvalidChar}"
     mseMsg="${mseMsg/\[\[VAR\]\]/result}"
     mseMsg="${mseMsg/\[\[CHAR\]\]/NEW_LINE}"
-    mseResultData+="${mseMsg}"
+    mseResultInfo+="${mseMsg}"
   fi
   if [[ "${mseCompareExpected}" == *$'\n'* ]]; then
     mseIsOk="0"
     mseMsg="${lbl_compareString_valueHasAnInvalidChar}"
     mseMsg="${mseMsg/\[\[VAR\]\]/expected}"
     mseMsg="${mseMsg/\[\[CHAR\]\]/NEW_LINE}"
-    mseExpectedData+="${mseMsg}"
+    mseExpectedInfo+="${mseMsg}"
   fi
 
 
 
-  if [ "${mseIsOk}" == "1" ] && [ "${mseCompareResult}" != "${mseCompareExpected}" ]; then
+  if [ "${mseIsOk}" == "1" ]; then
     local mseCompareResultLength="${#mseCompareResult}"
     local mseCompareExpectedLength="${#mseCompareExpected}"
 
@@ -62,35 +63,57 @@ mse_utest_compare_string() {
       mseMsg="${lbl_assertStringDivergence_charNumberDifferent}"
       mseMsg="${mseMsg/\[\[COUNT_EXPECTED\]\]/${mseCompareExpectedLength}}"
       mseMsg="${mseMsg/\[\[COUNT_RESULT\]\]/${mseCompareResultLength}}"
-      mseResultData+="${mseMsg}"
+      mseResultInfo+="${mseMsg}"
     else
-      local mseI
-      local rChar
-      local eChar
-      local mseMsg=""
+      if [ "${mseCompareResult}" != "${mseCompareExpected}" ]; then
+        mseCompareChars="1"
 
-      for (( mseI=0; mseI < mseCompareExpectedLength; mseI++ )); do
-        rChar="${mseCompareResult:mseI:1}"
-        eChar="${mseCompareExpected:mseI:1}"
+        local mseI
+        local rChar
+        local eChar
+        local mseMsg=""
 
-        if [ "${rChar}" == "${eChar}" ]; then
-          mseMsg+="."
-        else
-          mseIsOk="0"
-          mseMsg+="^"
-          break
-        fi
-      done
+        for (( mseI=0; mseI < mseCompareExpectedLength; mseI++ )); do
+          rChar="${mseCompareResult:mseI:1}"
+          eChar="${mseCompareExpected:mseI:1}"
 
-      mseResultData+="\n${mseCompareResult}\n${mseMsg}"
-      mseExpectedData+="\n${mseCompareExpected}\n${mseMsg}"
+          if [ "${rChar}" == "${eChar}" ]; then
+            mseMsg+="."
+          else
+            mseIsOk="0"
+            mseMsg+="^"
+            break
+          fi
+        done
+
+        mseResultInfo+="${mseMsg}"
+        mseExpectedInfo+="${mseMsg}"
+      fi
     fi
   fi
 
 
 
+  local mseStrReturnResult=""
+  local mseStrReturnExpected=""
+  if [ "${mseIsOk}" == "0" ]; then
+    mseStrReturnResult+="\n"
+    if [ "${mseExpectedInfo}" != "" ]; then
+      mseStrReturnExpected+="\n"
+    fi
+  fi
+  mseStrReturnResult+="${mseCompareResult}"
+  mseStrReturnExpected+="${mseCompareExpected}"
+  if [ "${mseResultInfo}" != "" ]; then
+    mseStrReturnResult+="\n${mseResultInfo}"
+  fi
+  if [ "${mseExpectedInfo}" != "" ]; then
+    mseStrReturnExpected+="\n${mseExpectedInfo}"
+  fi
+
+
   mseArrReturn=()
   mseArrReturn+=("${mseIsOk}")
-  mseArrReturn+=("$(echo -e "${mseResultData}")")
-  mseArrReturn+=("$(echo -e "${mseExpectedData}")")
+  mseArrReturn+=("$(echo -e "${mseStrReturnResult}")")
+  mseArrReturn+=("$(echo -e "${mseStrReturnExpected}")")
 }

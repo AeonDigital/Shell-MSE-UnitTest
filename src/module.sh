@@ -186,6 +186,9 @@ mse_utest_autotest() {
 
   # Compare functions
   . "${MSE_UTEST_GLOBAL_MAIN_PATH}/src/utest/compare/string.sh"
+
+
+  # Assert functions
   #. "${MSE_UTEST_GLOBAL_MAIN_PATH}/src/utest/assert/string.sh"
 
 

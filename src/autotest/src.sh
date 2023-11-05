@@ -39,6 +39,12 @@ autotest_mse_utest_compare_string() {
   MSE_UTEST_FUNCTIONS_TO_TEST["mse_utest_compare_string"]="${MSE_UTEST_GLOBAL_MAIN_PATH}/src/autotest/utest/compare/string.sh"
 }
 
+#
+# Assert string
+autotest_mse_utest_assert_string() {
+  MSE_UTEST_FUNCTIONS_TO_SRC["mse_utest_assert_string"]="${MSE_UTEST_GLOBAL_MAIN_PATH}/src/utest/assert/string.sh"
+  MSE_UTEST_FUNCTIONS_TO_TEST["mse_utest_assert_string"]="${MSE_UTEST_GLOBAL_MAIN_PATH}/src/autotest/utest/assert/string.sh"
+}
 
 
 
