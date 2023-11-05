@@ -65,13 +65,16 @@ lbl_assertResult_StopInFirstFail=":: STOPED ON FIRST FAIL ::"
 
 
 lbl_compareString_valueHasAnInvalidChar="The value passed in '[[VAR]]' has an invalid character: '[[CHAR]]'"
-lbl_assertStringDivergence_charNumberDifferent="Different number of characters. Expected [[COUNT_EXPECTED]] but counted [[COUNT_RESULT]]."
 lbl_assertStringDivergence_charDifferent="Expected char: '[[C1]]'; returned : '[[C2]]'"
 
-# lbl_assertArray_invalidTypeArrays="Invalid type of arrays (\$1); Given \"[[ARRAY_TYPE]]\". Expected \"a\" or \"A\"."
-# lbl_assertArray_resultIsNotAnArray="The control variable \"testResult\" is not an array"
-# lbl_assertArray_expectedIsNotAnArray="The control variable \"testExpected\" is not an array"
-# lbl_assertArray_countElementsDoesNotMatch="The number of items in the \"testResult\" array does not match. Expected [[COUNT_EXPECTED]] but found [[COUNT_RESULT]]"
-# lbl_assertArray_countOfValuesThatDoesNotMatch="Among the values found in the \"testResult\" array there are [[COUNT]] that do not correspond to expected values."
-# lbl_assertArray_resultIsNotAnAssoc="The control variable \"testResult\" is not an associative array"
-# lbl_assertArray_expectedIsNotAnAssoc="The control variable \"testExpected\" is not an associative array"
+
+lbl_assertArray_criticalError="CRITICAL ERROR"
+lbl_assertArray_criticalError_invalidTypeArrays="Invalid type of arrays (\$1); Given \"[[ARRAY_TYPE]]\". Expected \"a\" or \"A\"."
+lbl_assertArray_criticalError_resultIsNotAnArray="The control variable \"testResult\" is not an array"
+lbl_assertArray_criticalError_expectedIsNotAnArray="The control variable \"testExpected\" is not an array"
+lbl_assertArray_criticalError_resultIsNotAnAssoc="The control variable \"testResult\" is not an associative array"
+lbl_assertArray_criticalError_expectedIsNotAnAssoc="The control variable \"testExpected\" is not an associative array"
+
+lbl_assertArray_countElementsDoesNotMatch="The number of items in the \"testResult\" array does not match. Expected [[COUNT_EXPECTED]] but found [[COUNT_RESULT]]."
+lbl_assertArray_compareResultReport_firstLine=":: RESULT ARRAY [ rows: [[ROWS]] | cols: [[COLS]] ]"
+lbl_assertArray_compareExpectedReport_firstLine=":: EXPECTED ARRAY [ rows: [[ROWS]] | cols: [[COLS]] ]"

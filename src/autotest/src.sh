@@ -61,6 +61,7 @@ autotest_reset_control_data
 autotest_mse_utest_assert_equals
 autotest_mse_utest_assert_not_equals
 autotest_mse_utest_compare_string
+autotest_mse_utest_compare_array
 autotest_mse_utest_assert_string
 
 mse_utest_execute

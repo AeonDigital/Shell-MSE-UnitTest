@@ -31,9 +31,8 @@ mse_utest_compare_string() {
   local mseResultInfo=""
   local mseExpectedInfo=""
 
-  local mseCompareChars="0"
-  local mseCompareResult=$(echo -e "${1}")
-  local mseCompareExpected=$(echo -e "${2}")
+  local mseCompareResult=$(mse_utest_str_trim "${1}")
+  local mseCompareExpected=$(mse_utest_str_trim "${2}")
   declare -n mseArrReturn="${3}"
 
 
@@ -54,61 +53,56 @@ mse_utest_compare_string() {
 
 
 
-  if [ "${mseIsOk}" == "1" ]; then
+  if [ "${mseIsOk}" == "1" ] && [ "${mseCompareResult}" != "${mseCompareExpected}" ]; then
     local mseCompareResultLength="${#mseCompareResult}"
     local mseCompareExpectedLength="${#mseCompareExpected}"
 
-    if [ "${mseCompareResultLength}" != "${mseCompareExpectedLength}" ]; then
-      mseIsOk="0"
-      mseMsg="${lbl_assertStringDivergence_charNumberDifferent}"
-      mseMsg="${mseMsg/\[\[COUNT_EXPECTED\]\]/${mseCompareExpectedLength}}"
-      mseMsg="${mseMsg/\[\[COUNT_RESULT\]\]/${mseCompareResultLength}}"
-      mseResultInfo+="${mseMsg}"
-    else
-      if [ "${mseCompareResult}" != "${mseCompareExpected}" ]; then
-        mseCompareChars="1"
-
-        local mseI
-        local rChar
-        local eChar
-        local mseMsg=""
-        local mseCharData=""
-
-        for (( mseI=0; mseI < mseCompareExpectedLength; mseI++ )); do
-          rChar="${mseCompareResult:mseI:1}"
-          eChar="${mseCompareExpected:mseI:1}"
-
-          if [ "${rChar}" == "${eChar}" ]; then
-            mseMsg+="."
-          else
-            mseIsOk="0"
-            mseMsg+="^"
-
-            local mseUseRChar="${rChar}"
-            local mseUseEChar="${eChar}"
-            if [[ ! "${rChar}" =~ [[:print:]] ]]; then
-              mseUseRChar="char("
-              mseUseRChar+=$(printf "%d" "'${rChar}")
-              mseUseRChar+=")"
-            fi
-            if [[ ! "${eChar}" =~ [[:print:]] ]]; then
-              mseUseEChar="char("
-              mseUseEChar+=$(printf "%d" "'${eChar}")
-              mseUseEChar+=")"
-            fi
-
-            mseCharData=" ${lbl_assertStringDivergence_charDifferent}"
-            mseCharData="${mseCharData/\[\[C1\]\]/${mseUseEChar}}"
-            mseCharData="${mseCharData/\[\[C2\]\]/${mseUseRChar}}"
-            break
-          fi
-        done
-
-        mseResultInfo+="${mseMsg}${mseCharData}"
-        mseExpectedInfo+="${mseMsg}"
-      fi
+    local mseUseLength="${mseCompareExpectedLength}"
+    if [ "${mseCompareResultLength}" -gt "${mseCompareExpectedLength}" ]; then
+      mseUseLength="${mseCompareResultLength}"
     fi
+
+
+    local mseI
+    local rChar
+    local eChar
+    local mseMsg=""
+    local mseCharData=""
+
+    for (( mseI=0; mseI < mseCompareExpectedLength; mseI++ )); do
+      rChar="${mseCompareResult:mseI:1}"
+      eChar="${mseCompareExpected:mseI:1}"
+
+      if [ "${rChar}" == "${eChar}" ]; then
+        mseMsg+="."
+      else
+        mseIsOk="0"
+        mseMsg+="^"
+
+        local mseUseRChar="${rChar}"
+        local mseUseEChar="${eChar}"
+        if [[ ! "${rChar}" =~ [[:print:]] ]]; then
+          mseUseRChar="char("
+          mseUseRChar+=$(printf "%d" "'${rChar}")
+          mseUseRChar+=")"
+        fi
+        if [[ ! "${eChar}" =~ [[:print:]] ]]; then
+          mseUseEChar="char("
+          mseUseEChar+=$(printf "%d" "'${eChar}")
+          mseUseEChar+=")"
+        fi
+
+        mseCharData=" ${lbl_assertStringDivergence_charDifferent}"
+        mseCharData="${mseCharData/\[\[C1\]\]/${mseUseEChar}}"
+        mseCharData="${mseCharData/\[\[C2\]\]/${mseUseRChar}}"
+        break
+      fi
+    done
+
+    mseResultInfo+="${mseMsg}${mseCharData}"
+    mseExpectedInfo+="${mseMsg}"
   fi
+
 
 
 

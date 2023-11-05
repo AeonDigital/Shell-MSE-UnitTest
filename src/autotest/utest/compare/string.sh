@@ -70,38 +70,6 @@ test_mse_utest_compare_string() {
 
 
 
-  local mseFakeResult="This comparison should fail as the character count will be different"
-  local mseFakeExpected="This comparison should fail as the character count will be different."
-
-  mse_utest_compare_string "${mseFakeResult}" "${mseFakeExpected}" "mseCompareArrResult"
-
-  testResult="${#mseCompareArrResult[@]}"
-  testExpected="3"
-
-  mse_utest_assert_equals
-
-
-  testResult="${mseCompareArrResult[0]}"
-  testExpected="0"
-
-  mse_utest_assert_equals
-
-
-  testResult="${mseCompareArrResult[1]}"
-  testExpected=$(echo -e "\n${mseFakeResult}\nDifferent number of characters. Expected 69 but counted 68.")
-
-  mse_utest_assert_equals
-
-
-  testResult="${mseCompareArrResult[2]}"
-  testExpected=$(echo -e "\n${mseFakeExpected}")
-
-  mse_utest_assert_equals
-
-
-
-
-
   local mseFakeResult="This comparison should fail. and we will have the point of where exactly the strings diverge."
   local mseFakeExpected="This comparison should fail, and we will have the point of where exactly the strings diverge."
 
