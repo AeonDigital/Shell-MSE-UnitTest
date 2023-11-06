@@ -15,8 +15,8 @@
 # @return bool
 mse_utest_is_not_equals() {
   local mseReturn="1"
-  local mseVal01="${1}"
-  local mseVal02="${2}"
+  local mseVal01=$(echo -e "${1}")
+  local mseVal02=$(echo -e "${2}")
 
   if [ "${mseVal01}" == "${mseVal02}" ]; then
     mseReturn="0"
