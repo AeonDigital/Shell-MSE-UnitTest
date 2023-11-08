@@ -9,6 +9,7 @@ test_mse_utest_compare_string() {
   local mseFakeResult="This comparison should fail because there is an\n invalid character in it."
   local mseFakeExpected="This comparison\n should fail because there is an invalid character in it."
 
+  mseTestSection="Group 01"
   mse_utest_compare_string "${mseFakeResult}" "${mseFakeExpected}" "mseCompareArrResult"
 
   testResult="${#mseCompareArrResult[@]}"
@@ -37,7 +38,7 @@ test_mse_utest_compare_string() {
 
 
 
-
+  mseTestSection="Group 02"
   local mseFakeResult="This comparison should be successful. \n"
   local mseFakeExpected="This comparison should be successful. "
 
@@ -70,6 +71,7 @@ test_mse_utest_compare_string() {
 
 
 
+  mseTestSection="Group 03"
   local mseFakeResult="This comparison should fail. and we will have the point of where exactly the strings diverge."
   local mseFakeExpected="This comparison should fail, and we will have the point of where exactly the strings diverge."
 
@@ -102,6 +104,7 @@ test_mse_utest_compare_string() {
 
 
 
+  mseTestSection="Group 04"
   local mseFakeResult="Third line equal   "
   local mseFakeExpected="Third line equal"
 

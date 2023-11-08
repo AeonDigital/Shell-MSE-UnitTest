@@ -35,6 +35,7 @@ mse_utest_execute() {
 
     local mseIterator
     local mseFunctionName
+    local mseTestSection
 
 
     for mseIterator in "${MSE_UTEST_PATH_TO_DEPENDENCIES[@]}"; do
