@@ -3,20 +3,20 @@
 
 
 #
-# Compares two string values.
+# Compares two values.
 # Returns '1' if their are NOT equals or '0' if is.
 #
 # @param string $1
-# First string.
+# First value.
 #
 # @param string $2
-# Second string.
+# Second value.
 #
 # @return bool
 mse_utest_is_not_equals() {
   local mseReturn="1"
-  local mseVal01=$(echo -e "${1}")
-  local mseVal02=$(echo -e "${2}")
+  local mseVal01="${1}"
+  local mseVal02="${2}"
 
   if [ "${mseVal01}" == "${mseVal02}" ]; then
     mseReturn="0"

@@ -3,8 +3,17 @@
 
 
 test_mse_utest_assert_not_equals() {
-  testResult="32001"
-  testExpected="32000"
+  local mseTestMultilineResult=""
+  local mseTestMultilineExpected=""
+
+  mseTestMultilineResult+="\ntest with \`multiline\`"
+  mseTestMultilineResult+="\nstring "
+  mseTestMultilineExpected+="\ntest with \`multiline\`"
+  mseTestMultilineExpected+="\nstring "
+  mseTestMultilineExpected=$(echo -e "${mseTestMultilineExpected}")
+
+  testResult="${mseTestMultilineResult}"
+  testExpected="${mseTestMultilineExpected}"
 
   mse_utest_assert_not_equals
 }

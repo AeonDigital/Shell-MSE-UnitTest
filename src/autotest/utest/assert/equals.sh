@@ -3,13 +3,6 @@
 
 
 test_mse_utest_assert_equals() {
-  testResult="32000"
-  testExpected="32000"
-
-  mse_utest_assert_equals
-
-
-
   local mseTestMultilineResult=""
   local mseTestMultilineExpected=""
 
@@ -17,7 +10,7 @@ test_mse_utest_assert_equals() {
   mseTestMultilineResult+="\nstring "
   mseTestMultilineExpected+="\ntest with \`multiline\`"
   mseTestMultilineExpected+="\nstring "
-  mseTestMultilineExpected=$(echo -e "${mseTestMultilineExpected}")
+
 
   testResult="${mseTestMultilineResult}"
   testExpected="${mseTestMultilineExpected}"

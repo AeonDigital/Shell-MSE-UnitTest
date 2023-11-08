@@ -4,7 +4,7 @@
 
 #
 # Checks whether the value contained in the control variables are NOT
-# identical strings.
+# identical values.
 #
 # @controlVariables
 # - testResult
