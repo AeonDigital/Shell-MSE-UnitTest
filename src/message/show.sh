@@ -12,7 +12,7 @@
 mse_utest_message_show() {
   local mseMsg
   for mseMsg in "${MSE_UTEST_LOG_MESSAGES[@]}"; do
-    printf "${MSE_UTEST_LOG_MESSAGES_INDENT}${mseMsg}\n"
+    echo -e "${MSE_UTEST_LOG_MESSAGES_INDENT}${mseMsg}"
   done
 
   unset MSE_UTEST_LOG_MESSAGES

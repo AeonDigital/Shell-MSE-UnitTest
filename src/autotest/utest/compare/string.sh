@@ -24,13 +24,13 @@ test_mse_utest_compare_string() {
 
 
   testResult="${mseCompareArrResult[1]}"
-  testExpected=$(echo -e "\n${mseFakeResult}\nThe value passed in 'result' has an invalid character: 'NEW_LINE'")
+  testExpected=$(mse_utest_normalize_string "\n${mseFakeResult}\nThe value passed in 'result' has an invalid character: 'NEW_LINE'")
 
   mse_utest_assert_equals
 
 
   testResult="${mseCompareArrResult[2]}"
-  testExpected=$(echo -e "\n${mseFakeExpected}\nThe value passed in 'expected' has an invalid character: 'NEW_LINE'")
+  testExpected=$(mse_utest_normalize_string "\n${mseFakeExpected}\nThe value passed in 'expected' has an invalid character: 'NEW_LINE'")
 
   mse_utest_assert_equals
 
@@ -56,13 +56,13 @@ test_mse_utest_compare_string() {
 
 
   testResult="${mseCompareArrResult[1]}"
-  testExpected=$(echo -e "${mseFakeResult}")
+  testExpected=$(mse_utest_normalize_string "${mseFakeResult}")
 
   mse_utest_assert_equals
 
 
   testResult="${mseCompareArrResult[2]}"
-  testExpected=$(echo -e "${mseFakeExpected}")
+  testExpected=$(mse_utest_normalize_string "${mseFakeExpected}")
 
   mse_utest_assert_equals
 
@@ -88,13 +88,13 @@ test_mse_utest_compare_string() {
 
 
   testResult="${mseCompareArrResult[1]}"
-  testExpected=$(echo -e "\n${mseFakeResult}\n...........................^ Expected char: ','; returned : '.'")
+  testExpected=$(mse_utest_normalize_string "\n${mseFakeResult}\n...........................^ Expected char: ','; returned : '.'")
 
   mse_utest_assert_equals
 
 
   testResult="${mseCompareArrResult[2]}"
-  testExpected=$(echo -e "\n${mseFakeExpected}\n...........................^")
+  testExpected=$(mse_utest_normalize_string "\n${mseFakeExpected}\n...........................^")
 
   mse_utest_assert_equals
 
@@ -120,13 +120,13 @@ test_mse_utest_compare_string() {
 
 
   testResult="${mseCompareArrResult[1]}"
-  testExpected=$(echo -e "\n${mseFakeResult}\n................^ Expected char: 'char(0)'; returned : ' '")
+  testExpected=$(mse_utest_normalize_string "\n${mseFakeResult}\n................^ Expected char: 'char(0)'; returned : ' '")
 
   mse_utest_assert_equals
 
 
   testResult="${mseCompareArrResult[2]}"
-  testExpected=$(echo -e "\n${mseFakeExpected}\n................^")
+  testExpected=$(mse_utest_normalize_string "\n${mseFakeExpected}\n................^")
 
   mse_utest_assert_equals
 }

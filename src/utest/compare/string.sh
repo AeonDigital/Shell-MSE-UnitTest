@@ -32,8 +32,8 @@ mse_utest_compare_string() {
   local mseResultInfo=""
   local mseExpectedInfo=""
 
-  local mseCompareResult=$(echo -e "${1}")
-  local mseCompareExpected=$(echo -e "${2}")
+  local mseCompareResult=$(mse_utest_normalize_string "${1}")
+  local mseCompareExpected=$(mse_utest_normalize_string "${2}")
   declare -n mseArrReturn="${3}"
 
 
@@ -125,6 +125,6 @@ mse_utest_compare_string() {
 
   mseArrReturn=()
   mseArrReturn+=("${mseIsOk}")
-  mseArrReturn+=("$(echo -e "${mseStrReturnResult}")")
-  mseArrReturn+=("$(echo -e "${mseStrReturnExpected}")")
+  mseArrReturn+=("$(mse_utest_normalize_string "${mseStrReturnResult}")")
+  mseArrReturn+=("$(mse_utest_normalize_string "${mseStrReturnExpected}")")
 }
