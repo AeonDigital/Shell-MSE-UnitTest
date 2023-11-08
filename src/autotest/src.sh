@@ -18,6 +18,21 @@ autotest_reset_control_data() {
 
 
 #
+# Normalize
+autotest_mse_utest_normalize() {
+  MSE_UTEST_FUNCTIONS_TO_SRC["mse_utest_normalize_string"]="${MSE_GLOBAL_UTEST_MAIN_PATH}/src/functions/normalize/string.sh"
+  MSE_UTEST_FUNCTIONS_TO_TEST["mse_utest_normalize_string"]="${MSE_GLOBAL_UTEST_MAIN_PATH}/src/autotest/utest/normalize/string.sh"
+
+  MSE_UTEST_FUNCTIONS_TO_SRC["mse_utest_normalize_arrays"]="${MSE_GLOBAL_UTEST_MAIN_PATH}/src/functions/normalize/arrays.sh"
+  MSE_UTEST_FUNCTIONS_TO_TEST["mse_utest_normalize_arrays"]="${MSE_GLOBAL_UTEST_MAIN_PATH}/src/autotest/utest/normalize/arrays.sh"
+
+  MSE_UTEST_FUNCTIONS_TO_SRC["mse_utest_normalize_args"]="${MSE_GLOBAL_UTEST_MAIN_PATH}/src/functions/normalize/args.sh"
+  MSE_UTEST_FUNCTIONS_TO_TEST["mse_utest_normalize_args"]="${MSE_GLOBAL_UTEST_MAIN_PATH}/src/autotest/utest/normalize/args.sh"
+}
+
+
+
+#
 # Equals
 autotest_mse_utest_assert_equals() {
   MSE_UTEST_FUNCTIONS_TO_SRC["mse_utest_assert_equals"]="${MSE_GLOBAL_UTEST_MAIN_PATH}/src/utest/assert/equals.sh"

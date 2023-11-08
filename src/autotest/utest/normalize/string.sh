@@ -2,7 +2,7 @@
 # myShellEnv v 1.0 [aeondigital.com.br]
 
 
-test_mse_utest_assert_equals() {
+test_mse_utest_normalize_string() {
   local mseTestMultilineResult=""
   local mseTestMultilineExpected=""
 
@@ -16,4 +16,11 @@ test_mse_utest_assert_equals() {
   testExpected="${mseTestMultilineExpected}"
 
   mse_utest_assert_equals
+
+
+
+  testResult=$(mse_utest_normalize_string "${mseTestMultilineResult}")
+  testExpected="${mseTestMultilineExpected}"
+
+  mse_utest_assert_not_equals
 }

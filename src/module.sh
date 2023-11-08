@@ -22,10 +22,9 @@
 # @param bool $2
 # Stop tests on the first fail.
 mse_utest_execute() {
+  loadUtestDependencies
   checkUTestDataBeforeExecute
   if [ "$?" == "0" ]; then
-    loadUtestDependencies
-
     local mseTestFunction="${1}"
 
     local mseCountTests="0"
@@ -117,6 +116,7 @@ mse_utest_autotest() {
   . "${mseDir}/autotest/src.sh"
   autotest_reset_control_data
 
+  autotest_mse_utest_normalize
   autotest_mse_utest_assert_equals
   autotest_mse_utest_assert_not_equals
   autotest_mse_utest_compare_string
