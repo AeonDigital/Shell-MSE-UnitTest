@@ -91,9 +91,11 @@ mse_utest_compare_array() {
   #
   # CRITICAL ERROR
   if [ "${mseIsOk}" == "0" ]; then
+    mseArrMsg=("\n${lbl_assertArray_criticalError}" "${mseArrMsg[@]}")
+
     mseArrReturn=()
     mseArrReturn+=("${mseIsOk}")
-    mseArrReturn+=("$(echo -e "\n${lbl_assertArray_criticalError}"; printf "%s\n" "${mseArrMsg[@]}")")
+    mseArrReturn+=("$(mse_utest_array_print_inLines "mseArrMsg")")
     mseArrReturn+=("")
   else
     local mseCountResultElements="${#utestResult[@]}"
@@ -126,8 +128,8 @@ mse_utest_compare_array() {
       local countMatch="0"
 
       for mseI in "${!utestExpected[@]}"; do
-        utestCompareArrResult[${mseI}]=$(echo -e "${utestResult[${mseI}]}")
-        utestCompareArrExpected[${mseI}]=$(echo -e "${utestExpected[${mseI}]}")
+        utestCompareArrResult[${mseI}]=$(mse_utest_normalize_string "${utestResult[${mseI}]}")
+        utestCompareArrExpected[${mseI}]=$(mse_utest_normalize_string "${utestExpected[${mseI}]}")
       done
 
 
