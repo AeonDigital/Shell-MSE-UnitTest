@@ -21,15 +21,18 @@ mse_utest_assert_string_multiline() {
     declare -a utestArrResult=()
     declare -a utestArrExpected=()
 
+    local mseTmpTestResult=$(mse_utest_normalize_string "${testResult}")
+    local mseTmpTestExpected=$(mse_utest_normalize_string "${testExpected}")
+
 
     IFS=$'\n'
     while read -r mseLineRaw || [ -n "${mseLineRaw}" ]; do
       utestArrResult+=("${mseLineRaw}")
-    done <<< "${testResult}"
+    done <<< "${mseTmpTestResult}"
 
     while read -r mseLineRaw || [ -n "${mseLineRaw}" ]; do
       utestArrExpected+=("${mseLineRaw}")
-    done <<< "${testExpected}"
+    done <<< "${mseTmpTestExpected}"
     IFS=$' \t\n'
 
     mse_utest_compare_array "utestArrResult" "utestArrExpected" "mseCompareArrResult" "a" "1"
