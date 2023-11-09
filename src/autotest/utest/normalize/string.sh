@@ -6,9 +6,9 @@ test_mse_utest_normalize_string() {
   local mseTestMultilineResult=""
   local mseTestMultilineExpected=""
 
-  mseTestMultilineResult+="\ntest with \`multiline\`"
+  mseTestMultilineResult+="\ntest 0 with \`multiline\`"
   mseTestMultilineResult+="\nstring "
-  mseTestMultilineExpected+="\ntest with \`multiline\`"
+  mseTestMultilineExpected+="\ntest 0 with \`multiline\`"
   mseTestMultilineExpected+="\nstring "
 
 
