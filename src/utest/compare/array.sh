@@ -110,7 +110,7 @@ mse_utest_compare_array() {
 
       mseArrReturn=()
       mseArrReturn+=("${mseIsOk}")
-      mseArrReturn+=("$(echo -e "\n${mseMsg}")")
+      mseArrReturn+=("$(mse_utest_normalize_string "\n${mseMsg}")")
       mseArrReturn+=("")
     else
 
@@ -307,8 +307,8 @@ mse_utest_compare_array() {
 
         mseArrReturn=()
         mseArrReturn+=("${mseIsOk}")
-        mseArrReturn+=("$(printf "%s\n" "${mseArrReturnResultReport[@]}")")
-        mseArrReturn+=("$(printf "%s\n" "${mseArrReturnExpectedReport[@]}")")
+        mseArrReturn+=("$(mse_utest_array_print_inLines "mseArrReturnResultReport")")
+        mseArrReturn+=("$(mse_utest_array_print_inLines "mseArrReturnExpectedReport")")
       fi
     fi
   fi

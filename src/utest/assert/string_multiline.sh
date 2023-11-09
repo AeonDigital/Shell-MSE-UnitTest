@@ -24,11 +24,11 @@ mse_utest_assert_string_multiline() {
 
     IFS=$'\n'
     while read -r mseLineRaw || [ -n "${mseLineRaw}" ]; do
-      utestArrResult+=("$(echo -e ${mseLineRaw})")
+      utestArrResult+=("${mseLineRaw}")
     done <<< "${testResult}"
 
     while read -r mseLineRaw || [ -n "${mseLineRaw}" ]; do
-      utestArrExpected+=("$(echo -e ${mseLineRaw})")
+      utestArrExpected+=("${mseLineRaw}")
     done <<< "${testExpected}"
     IFS=$' \t\n'
 

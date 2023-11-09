@@ -10,7 +10,7 @@ test_mse_utest_assert_not_equals() {
   mseTestMultilineResult+="\nstring "
   mseTestMultilineExpected+="\ntest with \`multiline\`"
   mseTestMultilineExpected+="\nstring "
-  mseTestMultilineExpected=$(echo -e "${mseTestMultilineExpected}")
+  mseTestMultilineExpected=$(mse_utest_normalize_string "${mseTestMultilineExpected}")
 
   testResult="${mseTestMultilineResult}"
   testExpected="${mseTestMultilineExpected}"

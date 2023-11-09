@@ -191,7 +191,7 @@ test_mse_utest_compare_array_error_count_not_match_04() {
   mseTmpTestMsg="${mseTmpTestMsg/\[\[COUNT_RESULT\]\]/2}"
 
   testResult="${mseCompareArrResult[1]}"
-  testExpected=$(echo -e "\n${mseTmpTestMsg}")
+  testExpected=$(mse_utest_normalize_string "\n${mseTmpTestMsg}")
 
   mse_utest_assert_equals
 
@@ -295,7 +295,7 @@ test_mse_utest_compare_array_fail_06() {
   mseTmpTestMsg+=">>>"
 
   testResult="${mseCompareArrResult[1]}"
-  testExpected=$(echo -e "${mseTmpTestMsg}")
+  testExpected=$(mse_utest_normalize_string "${mseTmpTestMsg}")
 
   mse_utest_assert_equals
 
@@ -312,7 +312,7 @@ test_mse_utest_compare_array_fail_06() {
   mseTmpTestMsg+="[v] 3 :: Fourth line is ok       |\n"
   mseTmpTestMsg+=">>>"
   testResult="${mseCompareArrResult[2]}"
-  testExpected=$(echo -e "${mseTmpTestMsg}")
+  testExpected=$(mse_utest_normalize_string "${mseTmpTestMsg}")
 
   mse_utest_assert_equals
 
@@ -352,7 +352,7 @@ test_mse_utest_compare_array_fail_06() {
   mseTmpTestMsg+=">>>"
 
   testResult="${mseCompareArrResult[1]}"
-  testExpected=$(echo -e "${mseTmpTestMsg}")
+  testExpected=$(mse_utest_normalize_string "${mseTmpTestMsg}")
 
   mse_utest_assert_equals
 
@@ -370,7 +370,7 @@ test_mse_utest_compare_array_fail_06() {
   mseTmpTestMsg+=">>>"
 
   testResult="${mseCompareArrResult[2]}"
-  testExpected=$(echo -e "${mseTmpTestMsg}")
+  testExpected=$(mse_utest_normalize_string "${mseTmpTestMsg}")
 
   mse_utest_assert_equals
 }
