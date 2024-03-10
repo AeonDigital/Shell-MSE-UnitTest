@@ -14,6 +14,7 @@
 #
 # @return string
 mse_utest_normalize_string() {
-  local mseReturn=$(echo -e "${1//\\x0/}.")
+  local mseReturn=$(echo -e "${1//\\0/}")
+  mseReturn=$(echo -e "${mseReturn//\\x0/}.")
   echo -n "${mseReturn:: -1}"
 }
